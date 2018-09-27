@@ -1,0 +1,125 @@
+{
+	"services": [{
+			"title": "Netflix",
+			"elements": [{
+					"section": "title",
+					"type": "image",
+					"value": ["https://img3.telestar.fr/var/telestar/storage/images/3/0/5/6/3056045/netflix-annonce-des-projets-france_width1024.png"],
+					"mandatory": "true"
+				},
+				{
+					"section": "info",
+					"type": "edit",
+					"value": ["Nom"],
+					"mandatory": "true"
+				},
+				{
+					"section": "info",
+					"type": "edit",
+					"value": ["Prénom"],
+					"mandatory": "true"
+				},
+				{
+					"section": "info",
+					"type": "radioGroup",
+					"value": ["Homme","femme"],
+					"mandatory": "false"
+				},
+				{
+					"section": "info",
+					"type": "edit",
+					"value": ["Ville"],
+					"mandatory": "false"
+				},
+				{
+					"section": "abonnement",
+					"type": "label",
+					"value": ["Abonnement"],
+					"mandatory": "true"
+				},
+				{
+					"section": "abonnement",
+					"type": "radioGroup",
+					"value": ["3 mois", "6 mois", "1 an"],
+					"mandatory": "true"
+				},
+				{
+					"section": "newsletter",
+					"type": "label",
+					"value": ["Newsletter"],
+					"mandatory": "true"
+				},
+				{
+					"section": "newsletter",
+					"type": "switch",
+					"value": ["true"],
+					"mandatory": "true"
+				}
+			]
+		},
+		{
+			"title": "Spotify",
+			"elements": [{
+					"section": "title",
+					"type": "image",
+					"value": ["https://images-eu.ssl-images-amazon.com/images/I/51rttY7a%2B9L.png"],
+					"mandatory": "true"
+				},
+				{
+					"section": "info",
+					"type": "edit",
+					"value": ["Nom"],
+					"mandatory": "true"
+				},
+				{
+					"section": "info",
+					"type": "edit",
+					"value": ["Prénom"],
+					"mandatory": "true"
+				},
+				{
+					"section": "Style",
+					"type": "button",
+					"value": ["Metal"],
+					"mandatory": "true"
+				},
+				{
+					"section": "Style",
+					"type": "button",
+					"value": ["Rock"],
+					"mandatory": "true"
+				},
+				{
+					"section": "info",
+					"type": "edit",
+					"value": ["Ville"],
+					"mandatory": "false"
+				},
+				{
+					"section": "abonnement",
+					"type": "label",
+					"value": ["Abonnement"],
+					"mandatory": "true"
+				},
+				{
+					"section": "abonnement",
+					"type": "radioGroup",
+					"value": ["3 mois", "6 mois", "1 an"],
+					"mandatory": "true"
+				},
+				{
+					"section": "newsletter",
+					"type": "label",
+					"value": ["Newsletter"],
+					"mandatory": "true"
+				},
+				{
+					"section": "newsletter",
+					"type": "switch",
+					"value": ["true"],
+					"mandatory": "true"
+				}
+			]
+		}
+	]
+}
