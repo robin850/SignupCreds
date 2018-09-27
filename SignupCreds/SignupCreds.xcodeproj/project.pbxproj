@@ -13,6 +13,8 @@
 		00CD7D3A215CBE9200A966EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00CD7D38215CBE9200A966EB /* Main.storyboard */; };
 		00CD7D3C215CBE9400A966EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00CD7D3B215CBE9400A966EB /* Assets.xcassets */; };
 		00CD7D3F215CBE9400A966EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00CD7D3D215CBE9400A966EB /* LaunchScreen.storyboard */; };
+		00CD7D49215CC12400A966EB /* FourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CD7D48215CC12400A966EB /* FourthViewController.swift */; };
+		00CD7D4B215CC17100A966EB /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CD7D4A215CC17100A966EB /* ThirdViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		00CD7D3B215CBE9400A966EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00CD7D3E215CBE9400A966EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00CD7D40215CBE9400A966EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00CD7D48215CC12400A966EB /* FourthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthViewController.swift; sourceTree = "<group>"; };
+		00CD7D4A215CC17100A966EB /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				00CD7D34215CBE9200A966EB /* FirstViewController.swift */,
 				00CD7D36215CBE9200A966EB /* SecondViewController.swift */,
 				00CD7D38215CBE9200A966EB /* Main.storyboard */,
+				00CD7D48215CC12400A966EB /* FourthViewController.swift */,
+				00CD7D4A215CC17100A966EB /* ThirdViewController.swift */,
 				00CD7D3B215CBE9400A966EB /* Assets.xcassets */,
 				00CD7D3D215CBE9400A966EB /* LaunchScreen.storyboard */,
 				00CD7D40215CBE9400A966EB /* Info.plist */,
@@ -140,7 +146,9 @@
 			files = (
 				00CD7D37215CBE9200A966EB /* SecondViewController.swift in Sources */,
 				00CD7D33215CBE9200A966EB /* AppDelegate.swift in Sources */,
+				00CD7D4B215CC17100A966EB /* ThirdViewController.swift in Sources */,
 				00CD7D35215CBE9200A966EB /* FirstViewController.swift in Sources */,
+				00CD7D49215CC12400A966EB /* FourthViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
