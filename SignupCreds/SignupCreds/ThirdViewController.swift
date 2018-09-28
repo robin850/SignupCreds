@@ -28,6 +28,9 @@ class ThirdViewController : UIViewController {
         self.netflixService.layer.shadowRadius = 15
         self.netflixService.layer.shadowPath = UIBezierPath(rect: netflixService.bounds).cgPath
         self.netflixService.layer.shouldRasterize = false
+        self.netflixService.layer.cornerRadius = 15
+        self.netflixService.clipsToBounds = true
+        
         
         self.spotifyService.layer.shadowColor = UIColor.black.cgColor
         self.spotifyService.layer.shadowOpacity = 0.1
