@@ -43,22 +43,41 @@
                                     <action selector="buttonClick:" destination="9pv-A4-QxB" eventType="touchUpInside" id="aTp-ei-O15"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oVN-sP-Sao" userLabel="defaultFormView">
+                                <rect key="frame" x="16" y="139" width="343" height="479"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Veuillez choisir le service auquel vous souhaitez vous inscrire dans l'onglet Services." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Po4-5f-2Gd">
+                                        <rect key="frame" x="0.0" y="-6" width="343" height="77"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Po4-5f-2Gd" firstAttribute="centerX" secondItem="oVN-sP-Sao" secondAttribute="centerX" id="jMq-Es-Lo2"/>
+                                    <constraint firstItem="Po4-5f-2Gd" firstAttribute="top" secondItem="oVN-sP-Sao" secondAttribute="top" constant="-6" id="rF8-8x-qHz"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="gec-hs-AEe" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="16" id="977-dw-hNd"/>
-                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="Shk-Dd-h5a" secondAttribute="trailing" constant="16" id="E7u-0j-PDD"/>
-                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="gec-hs-AEe" secondAttribute="trailing" constant="210" id="SvY-7c-3C7"/>
-                            <constraint firstItem="Shk-Dd-h5a" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="329" id="TP3-40-iop"/>
-                            <constraint firstItem="gec-hs-AEe" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="50" id="V5Z-gf-zID"/>
-                            <constraint firstItem="Shk-Dd-h5a" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="50" id="e1A-ie-cte"/>
+                            <constraint firstItem="Shk-Dd-h5a" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="50" id="8tG-qp-G9t"/>
+                            <constraint firstItem="gec-hs-AEe" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="50" id="Sjz-5V-exZ"/>
+                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="Shk-Dd-h5a" secondAttribute="trailing" constant="16" id="YLS-bX-wr0"/>
+                            <constraint firstItem="gec-hs-AEe" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="16" id="j8w-ht-GYB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="oVN-sP-Sao"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Formulaire" image="first" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="alertButton" destination="Shk-Dd-h5a" id="lRc-Ar-SdR"/>
+                        <outlet property="defaultFormView" destination="oVN-sP-Sao" id="72y-a2-JfN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
@@ -88,12 +107,10 @@
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="hQQ-7u-adF" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" constant="329" id="Bef-Ny-2Jm"/>
-                            <constraint firstItem="hQQ-7u-adF" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" constant="50" id="HQr-Ta-HYn"/>
-                            <constraint firstItem="pr6-xF-9ZB" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" constant="16" id="JWg-S9-tGu"/>
-                            <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="hQQ-7u-adF" secondAttribute="trailing" constant="16" id="cnI-3y-mYk"/>
-                            <constraint firstItem="pr6-xF-9ZB" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" constant="50" id="d5F-Pm-hca"/>
-                            <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="pr6-xF-9ZB" secondAttribute="trailing" constant="166" id="lXu-Yn-36l"/>
+                            <constraint firstItem="pr6-xF-9ZB" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" constant="50" id="52U-ZA-2ZP"/>
+                            <constraint firstItem="pr6-xF-9ZB" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" constant="16" id="Bg1-DO-ZED"/>
+                            <constraint firstItem="hQQ-7u-adF" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" constant="50" id="EUY-p8-Lwb"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="hQQ-7u-adF" secondAttribute="trailing" constant="16" id="lIh-VM-TH9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
@@ -122,7 +139,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="netflix.png" translatesAutoresizingMaskIntoConstraints="NO" id="gU2-ji-9Hp">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="netflix.png" translatesAutoresizingMaskIntoConstraints="NO" id="gU2-ji-9Hp">
                                 <rect key="frame" x="47" y="139" width="281" height="149"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -131,21 +148,25 @@
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <state key="normal" title="?"/>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="spotify.png" translatesAutoresizingMaskIntoConstraints="NO" id="ub0-Mm-vwk">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spotify.png" translatesAutoresizingMaskIntoConstraints="NO" id="ub0-Mm-vwk">
                                 <rect key="frame" x="47" y="328" width="281" height="149"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="PLN-2q-plw" firstAttribute="leading" secondItem="jLj-6z-gWW" secondAttribute="leading" constant="329" id="4Ye-QB-Kl0"/>
-                            <constraint firstItem="jLj-6z-gWW" firstAttribute="trailing" secondItem="PLN-2q-plw" secondAttribute="trailing" constant="16" id="90f-US-B2b"/>
-                            <constraint firstItem="Bn9-c0-NPm" firstAttribute="leading" secondItem="jLj-6z-gWW" secondAttribute="leading" constant="16" id="kfK-UR-HwI"/>
-                            <constraint firstItem="PLN-2q-plw" firstAttribute="top" secondItem="jLj-6z-gWW" secondAttribute="top" constant="50" id="pc7-Ak-yM2"/>
-                            <constraint firstItem="Bn9-c0-NPm" firstAttribute="top" secondItem="jLj-6z-gWW" secondAttribute="top" constant="50" id="pgj-Vc-2QX"/>
-                            <constraint firstItem="jLj-6z-gWW" firstAttribute="trailing" secondItem="Bn9-c0-NPm" secondAttribute="trailing" constant="238" id="sd9-uN-d5O"/>
+                            <constraint firstItem="Bn9-c0-NPm" firstAttribute="leading" secondItem="jLj-6z-gWW" secondAttribute="leading" constant="16" id="0DU-mr-Per"/>
+                            <constraint firstItem="jLj-6z-gWW" firstAttribute="trailing" secondItem="PLN-2q-plw" secondAttribute="trailing" constant="16" id="8rY-uh-zWs"/>
+                            <constraint firstItem="Bn9-c0-NPm" firstAttribute="top" secondItem="jLj-6z-gWW" secondAttribute="top" constant="50" id="cvO-6w-K9X"/>
+                            <constraint firstItem="PLN-2q-plw" firstAttribute="top" secondItem="jLj-6z-gWW" secondAttribute="top" constant="50" id="gfk-GR-wRh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jLj-6z-gWW"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="gU2-ji-9Hp"/>
+                                <exclude reference="ub0-Mm-vwk"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Services" image="third" id="tT8-b6-E7g"/>
                     <connections>
@@ -191,12 +212,10 @@ Robin Dupret</string>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="af8-Pt-bav" firstAttribute="top" secondItem="VTg-Kc-BEa" secondAttribute="top" constant="50" id="3v4-m8-MPd"/>
-                            <constraint firstItem="VTg-Kc-BEa" firstAttribute="trailing" secondItem="TLv-Ae-ioX" secondAttribute="trailing" constant="16" id="6Fu-qf-Tn2"/>
-                            <constraint firstItem="TLv-Ae-ioX" firstAttribute="leading" secondItem="VTg-Kc-BEa" secondAttribute="leading" constant="329" id="Bn8-hA-OYu"/>
-                            <constraint firstItem="VTg-Kc-BEa" firstAttribute="trailing" secondItem="af8-Pt-bav" secondAttribute="trailing" constant="256" id="FKr-C4-OSc"/>
-                            <constraint firstItem="af8-Pt-bav" firstAttribute="leading" secondItem="VTg-Kc-BEa" secondAttribute="leading" constant="16" id="Tkk-7u-SLl"/>
-                            <constraint firstItem="TLv-Ae-ioX" firstAttribute="top" secondItem="VTg-Kc-BEa" secondAttribute="top" constant="50" id="ovM-fT-q8t"/>
+                            <constraint firstItem="af8-Pt-bav" firstAttribute="leading" secondItem="VTg-Kc-BEa" secondAttribute="leading" constant="16" id="6Wp-hx-LhA"/>
+                            <constraint firstItem="TLv-Ae-ioX" firstAttribute="top" secondItem="VTg-Kc-BEa" secondAttribute="top" constant="50" id="lHi-pv-g4x"/>
+                            <constraint firstItem="af8-Pt-bav" firstAttribute="top" secondItem="VTg-Kc-BEa" secondAttribute="top" constant="50" id="vCb-Tf-Wp3"/>
+                            <constraint firstItem="VTg-Kc-BEa" firstAttribute="trailing" secondItem="TLv-Ae-ioX" secondAttribute="trailing" constant="16" id="xOq-eK-ElL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="VTg-Kc-BEa"/>
                     </view>

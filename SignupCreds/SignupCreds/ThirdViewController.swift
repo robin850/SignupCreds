@@ -37,6 +37,35 @@ class ThirdViewController : UIViewController {
         self.spotifyService.layer.shadowRadius = 15
         self.spotifyService.layer.shadowPath = UIBezierPath(rect: spotifyService.bounds).cgPath
         self.spotifyService.layer.shouldRasterize = false
+        
+        let jsonPath = Bundle.main.url(forResource: "service", withExtension: "json")
+        var y = 139
+        
+        do {
+            let data = try Data(contentsOf: jsonPath!)
+            let json = try JSONSerialization.jsonObject(with: data, options: [])
+            
+            let jsonServices = json as! [String : Any]
+            
+            for title in jsonServices["services"] as! Array<[String: Any]> {
+                for element in title["elements"] as! Array<[String : Any]> {
+                    let section = element["section"] as! String
+                    
+                    if(section == "title") {
+                        let values = element["value"] as! Array<String>
+                        for valeur in values {
+                            let myLabel:UILabel = UILabel(frame: CGRect(x : 16, y : y, width: 343, height: 21))
+                            myLabel.text = valeur
+                            myLabel.textColor = UIColor.black
+                            self.view.addSubview(myLabel)
+                            y += 61
+                        }
+                    }
+                }
+            }
+        } catch {
+            print(error)
+        }
         // Do any additional setup after loading the view, typically from a nib.
         
     }

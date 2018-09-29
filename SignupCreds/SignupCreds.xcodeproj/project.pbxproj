@@ -18,8 +18,6 @@
 		00CD7D4F215CCA5D00A966EB /* service.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CD7D4E215CCA5D00A966EB /* service.json */; };
 		7E64589C215CEAD900563D54 /* spotify.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E64589A215CEAD800563D54 /* spotify.png */; };
 		7E64589D215CEAD900563D54 /* netflix.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E64589B215CEAD800563D54 /* netflix.png */; };
-		7ED7E771215E7EED0032FF8E /* Cards in Resources */ = {isa = PBXBuildFile; fileRef = 7ED7E770215E7EED0032FF8E /* Cards */; };
-		7ED7E773215E7F550032FF8E /* Cards in Sources */ = {isa = PBXBuildFile; fileRef = 7ED7E770215E7EED0032FF8E /* Cards */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +34,6 @@
 		00CD7D4E215CCA5D00A966EB /* service.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = service.json; sourceTree = "<group>"; };
 		7E64589A215CEAD800563D54 /* spotify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spotify.png; sourceTree = "<group>"; };
 		7E64589B215CEAD800563D54 /* netflix.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = netflix.png; sourceTree = "<group>"; };
-		7ED7E770215E7EED0032FF8E /* Cards */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Cards; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +66,6 @@
 		00CD7D31215CBE9200A966EB /* SignupCreds */ = {
 			isa = PBXGroup;
 			children = (
-				7ED7E770215E7EED0032FF8E /* Cards */,
 				00CD7D4E215CCA5D00A966EB /* service.json */,
 				00CD7D32215CBE9200A966EB /* AppDelegate.swift */,
 				00CD7D34215CBE9200A966EB /* FirstViewController.swift */,
@@ -149,7 +145,6 @@
 				00CD7D3C215CBE9400A966EB /* Assets.xcassets in Resources */,
 				00CD7D3A215CBE9200A966EB /* Main.storyboard in Resources */,
 				7E64589D215CEAD900563D54 /* netflix.png in Resources */,
-				7ED7E771215E7EED0032FF8E /* Cards in Resources */,
 				7E64589C215CEAD900563D54 /* spotify.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,7 +156,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7ED7E773215E7F550032FF8E /* Cards in Sources */,
 				00CD7D37215CBE9200A966EB /* SecondViewController.swift in Sources */,
 				00CD7D33215CBE9200A966EB /* AppDelegate.swift in Sources */,
 				00CD7D4B215CC17100A966EB /* ThirdViewController.swift in Sources */,
