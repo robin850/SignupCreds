@@ -14,7 +14,7 @@
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="SignupCreds" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN" userLabel="FormView">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Formulaire" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gec-hs-AEe">
@@ -43,6 +43,24 @@
                                     <action selector="buttonClick:" destination="9pv-A4-QxB" eventType="touchUpInside" id="aTp-ei-O15"/>
                                 </connections>
                             </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GNj-HG-epb">
+                                <rect key="frame" x="0.0" y="139" width="375" height="812"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QhD-xU-rua">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1000" id="HE2-dY-sDW"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="QhD-xU-rua" firstAttribute="leading" secondItem="GNj-HG-epb" secondAttribute="leading" id="KGM-os-2Tr"/>
+                                    <constraint firstItem="QhD-xU-rua" firstAttribute="top" secondItem="GNj-HG-epb" secondAttribute="top" id="NUt-O8-hXT"/>
+                                    <constraint firstAttribute="bottom" secondItem="QhD-xU-rua" secondAttribute="bottom" id="UGF-g3-w6b"/>
+                                    <constraint firstItem="QhD-xU-rua" firstAttribute="width" secondItem="GNj-HG-epb" secondAttribute="width" id="gwF-4n-niX"/>
+                                    <constraint firstAttribute="trailing" secondItem="QhD-xU-rua" secondAttribute="trailing" id="n42-Cg-DFb"/>
+                                </constraints>
+                            </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oVN-sP-Sao" userLabel="defaultFormView">
                                 <rect key="frame" x="16" y="139" width="343" height="479"/>
                                 <subviews>
@@ -63,9 +81,13 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Shk-Dd-h5a" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="50" id="8tG-qp-G9t"/>
+                            <constraint firstItem="GNj-HG-epb" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="J6T-ai-jiV"/>
+                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="GNj-HG-epb" secondAttribute="trailing" id="MjB-X9-kLh"/>
                             <constraint firstItem="gec-hs-AEe" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="50" id="Sjz-5V-exZ"/>
+                            <constraint firstItem="PQr-Ze-W5v" firstAttribute="bottom" secondItem="GNj-HG-epb" secondAttribute="bottom" id="VWx-a2-cSp"/>
                             <constraint firstItem="PQr-Ze-W5v" firstAttribute="trailing" secondItem="Shk-Dd-h5a" secondAttribute="trailing" constant="16" id="YLS-bX-wr0"/>
                             <constraint firstItem="gec-hs-AEe" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" constant="16" id="j8w-ht-GYB"/>
+                            <constraint firstItem="GNj-HG-epb" firstAttribute="top" secondItem="gec-hs-AEe" secondAttribute="bottom" constant="33" id="vFT-a9-ktg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                         <variation key="default">
@@ -75,14 +97,16 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Formulaire" image="first" id="acW-dT-cKf"/>
+                    <size key="freeformSize" width="375" height="1000"/>
                     <connections>
                         <outlet property="alertButton" destination="Shk-Dd-h5a" id="lRc-Ar-SdR"/>
                         <outlet property="defaultFormView" destination="oVN-sP-Sao" id="72y-a2-JfN"/>
+                        <outlet property="scrollView" destination="QhD-xU-rua" id="1SK-FO-Vga"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
+            <point key="canvasLocation" x="750" y="-744"/>
         </scene>
         <!--Résultats-->
         <scene sceneID="wg7-f3-ORb">

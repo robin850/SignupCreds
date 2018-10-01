@@ -38,6 +38,9 @@ class FirstViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
+    
+    
+    @IBOutlet weak var scrollView: UIView!
     @IBOutlet weak var defaultFormView: UIView!
     
     override func viewDidLoad() {
@@ -60,25 +63,26 @@ class FirstViewController: UIViewController {
             //let services     = jsonServices["services"] as! Array<[String: Any]>
             
             //let dataService = services[service!]
-            
+            var y = 0
             for title in jsonServices["services"] as! Array<[String: Any]> {
                 for element in title["elements"] as! Array<[String : Any]> {
                     print(element["section"] as! String)
                     print(element["type"] as! String)
-                    
+
                     let values = element["value"] as! Array<String>
                     for valeur in values {
                         print(valeur)
+                        let label = UILabel(frame: CGRect(x: 16, y: y, width: 300, height: 21))
+                        label.text = valeur
+                        label.textColor = UIColor.black
+                        self.scrollView.addSubview(label)
+                        y += 30
                     }
-                    
-                    print("---------------------")
                 }
             }
         } catch {
             print(error)
         }
-        
-        
     }
 }
 

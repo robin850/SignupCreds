@@ -44,7 +44,6 @@ class ThirdViewController : UIViewController {
         do {
             let data = try Data(contentsOf: jsonPath!)
             let json = try JSONSerialization.jsonObject(with: data, options: [])
-            
             let jsonServices = json as! [String : Any]
             
             for title in jsonServices["services"] as! Array<[String: Any]> {
@@ -54,11 +53,20 @@ class ThirdViewController : UIViewController {
                     if(section == "title") {
                         let values = element["value"] as! Array<String>
                         for valeur in values {
-                            let myLabel:UILabel = UILabel(frame: CGRect(x : 16, y : y, width: 343, height: 21))
-                            myLabel.text = valeur
-                            myLabel.textColor = UIColor.black
-                            self.view.addSubview(myLabel)
-                            y += 61
+                            let imageUrlString = valeur
+                            let imageUrl:URL = URL(string: imageUrlString)!
+                            
+                            DispatchQueue.global(qos: .userInitiated).async {
+                                let imageData:NSData = NSData(contentsOf: imageUrl)!
+                                let imageView = UIImageView(frame: CGRect(x:16, y:y, width:200, height:200))
+                                y += 240
+                                DispatchQueue.main.async {
+                                    let image = UIImage(data: imageData as Data)
+                                    imageView.image = image
+                                    imageView.contentMode = UIView.ContentMode.scaleAspectFit
+                                    self.view.addSubview(imageView)
+                                }
+                            }
                         }
                     }
                 }
