@@ -7,39 +7,34 @@
 //
 
 import UIKit
+import Cards
 
 class ThirdViewController : UIViewController {
     
-    @IBOutlet weak var spotifyService: UIImageView!
-    @IBOutlet weak var netflixService: UIImageView!
     @IBOutlet weak var alertButton: UIButton!
     let appleBlue = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
     
+    @IBOutlet weak var titre: UILabel!
+    @IBOutlet weak var scrollViewContainer: UIScrollView!
+    @IBOutlet weak var scrollView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var margeOmbre = CGFloat(25) // Marge poour qu'on voit la première ombre en entier
+        let largeur = CGFloat(self.view.frame.width - 32) // Taille de la boite
+        let hauteurGlobale = CGFloat(margeOmbre + 2 * largeur + 100) // Hauteur globale de la scrollView avec deux boites
+        let nouvelleHauteur = CGFloat(self.scrollView.frame.height + hauteurGlobale)
+        self.scrollViewContainer.frame = CGRect(x: 0, y: 139, width: self.scrollViewContainer.frame.width, height: self.scrollViewContainer.frame.height + nouvelleHauteur)
+        self.scrollView.frame = CGRect(x: 0, y: 139, width: self.scrollView.frame.width, height: self.scrollView.frame.height + nouvelleHauteur)
+        self.view.frame = CGRect(x: 0, y: 0, width: self.scrollView.frame.width, height: self.scrollView.frame.height + nouvelleHauteur + 139)
         
         self.alertButton.backgroundColor = .clear
         self.alertButton.layer.cornerRadius = 15
         self.alertButton.layer.borderWidth = 1
         self.alertButton.layer.borderColor = appleBlue.cgColor
         
-        self.netflixService.layer.shadowColor = UIColor.black.cgColor
-        self.netflixService.layer.shadowOpacity = 0.1
-        self.netflixService.layer.shadowRadius = 15
-        self.netflixService.layer.shadowPath = UIBezierPath(rect: netflixService.bounds).cgPath
-        self.netflixService.layer.shouldRasterize = false
-        self.netflixService.layer.cornerRadius = 15
-        self.netflixService.clipsToBounds = true
-        
-        
-        self.spotifyService.layer.shadowColor = UIColor.black.cgColor
-        self.spotifyService.layer.shadowOpacity = 0.1
-        self.spotifyService.layer.shadowRadius = 15
-        self.spotifyService.layer.shadowPath = UIBezierPath(rect: spotifyService.bounds).cgPath
-        self.spotifyService.layer.shouldRasterize = false
-        
         let jsonPath = Bundle.main.url(forResource: "service", withExtension: "json")
-        var y = 139
         
         do {
             let data = try Data(contentsOf: jsonPath!)
@@ -53,18 +48,32 @@ class ThirdViewController : UIViewController {
                     if(section == "title") {
                         let values = element["value"] as! Array<String>
                         for valeur in values {
+                            
                             let imageUrlString = valeur
                             let imageUrl:URL = URL(string: imageUrlString)!
                             
                             DispatchQueue.global(qos: .userInitiated).async {
                                 let imageData:NSData = NSData(contentsOf: imageUrl)!
-                                let imageView = UIImageView(frame: CGRect(x:16, y:y, width:200, height:200))
-                                y += 240
                                 DispatchQueue.main.async {
                                     let image = UIImage(data: imageData as Data)
-                                    imageView.image = image
-                                    imageView.contentMode = UIView.ContentMode.scaleAspectFit
-                                    self.view.addSubview(imageView)
+                                
+                                    let card = CardHighlight(frame: CGRect(x: 16, y: margeOmbre, width: largeur , height: largeur))
+                                    
+                                    card.backgroundColor = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
+                                    card.icon = image
+                                    card.title = title["title"] as! String
+                                    card.itemTitle = "Inscription"
+                                    card.itemSubtitle = ""
+                                    card.textColor = UIColor.white
+                                    card.buttonText = "Sélectionner"
+                                    
+                                    card.hasParallax = true
+                                    
+                                    let cardContentVC = self.storyboard!.instantiateViewController(withIdentifier: "Services")
+                                    card.shouldPresent(cardContentVC, from: self, fullscreen: false)
+                                    
+                                    self.scrollView.addSubview(card)
+                                    margeOmbre = margeOmbre + largeur + CGFloat(40)
                                 }
                             }
                         }

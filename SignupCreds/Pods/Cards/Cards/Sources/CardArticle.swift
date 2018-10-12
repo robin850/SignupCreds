@@ -59,7 +59,7 @@ import UIKit
         initialize()
     }
     
-    override open func initialize() {
+    override  func initialize() {
         super.initialize()
         
         backgroundIV.addSubview(titleLbl)
@@ -107,7 +107,7 @@ import UIKit
         
     }
     
-    override open func layout(animating: Bool = true) {
+    override func layout(animating: Bool = true) {
         super.layout(animating: animating)
         
         let gimme  = LayoutHelper(rect: backgroundIV.bounds)

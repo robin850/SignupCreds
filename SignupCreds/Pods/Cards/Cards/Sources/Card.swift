@@ -122,10 +122,10 @@ import UIKit
     //Private Vars
     fileprivate var tap = UITapGestureRecognizer()
     fileprivate var detailVC = DetailViewController()
-    weak var superVC: UIViewController?
+    var superVC: UIViewController?
     var originalFrame = CGRect.zero
-    public var backgroundIV = UIImageView()
-    public var insets = CGFloat()
+    var backgroundIV = UIImageView()
+    var insets = CGFloat()
     var isPresenting = false
     
     //MARK: - View Life Cycle
@@ -140,7 +140,7 @@ import UIKit
         initialize()
     }
     
-    open func initialize() {
+    func initialize() {
         
         // Tap gesture init
         self.addGestureRecognizer(tap)
@@ -183,7 +183,7 @@ import UIKit
     
     //MARK: - Layout
     
-    open func layout(animating: Bool = true){ }
+    func layout(animating: Bool = true){ }
     
     
     //MARK: - Actions
@@ -253,16 +253,11 @@ extension Card: UIGestureRecognizerDelegate {
         cardTapped()
     }
     
-    open override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        resetAnimated()
-    }
-    
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         if let superview = self.superview {
             originalFrame = superview.convert(self.frame, to: nil)
         }
-        
         pushBackAnimated()
     }
 }

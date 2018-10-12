@@ -152,9 +152,9 @@
         <!--Services-->
         <scene sceneID="FxH-l8-25e">
             <objects>
-                <viewController id="7jo-kO-rwt" customClass="ThirdViewController" customModule="SignupCreds" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Services" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7jo-kO-rwt" customClass="ThirdViewController" customModule="SignupCreds" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h2e-H4-GYQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Services" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bn9-c0-NPm">
@@ -163,45 +163,56 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="netflix.png" translatesAutoresizingMaskIntoConstraints="NO" id="gU2-ji-9Hp">
-                                <rect key="frame" x="47" y="139" width="281" height="149"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLN-2q-plw">
                                 <rect key="frame" x="329" y="70" width="30" height="32"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <state key="normal" title="?"/>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spotify.png" translatesAutoresizingMaskIntoConstraints="NO" id="ub0-Mm-vwk">
-                                <rect key="frame" x="47" y="328" width="281" height="149"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J8m-Xh-UeS">
+                                <rect key="frame" x="0.0" y="136" width="375" height="815"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GH0-pv-uFu">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1000" id="S5K-oe-dIa"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="GH0-pv-uFu" firstAttribute="width" secondItem="J8m-Xh-UeS" secondAttribute="width" id="DRg-Qs-GbF"/>
+                                    <constraint firstAttribute="bottom" secondItem="GH0-pv-uFu" secondAttribute="bottom" constant="-188" id="Z0I-Zj-WGf"/>
+                                    <constraint firstItem="GH0-pv-uFu" firstAttribute="centerX" secondItem="J8m-Xh-UeS" secondAttribute="centerX" id="bEX-tM-ujG"/>
+                                    <constraint firstItem="GH0-pv-uFu" firstAttribute="leading" secondItem="J8m-Xh-UeS" secondAttribute="leading" id="f52-rc-RV7"/>
+                                    <constraint firstItem="GH0-pv-uFu" firstAttribute="top" secondItem="J8m-Xh-UeS" secondAttribute="top" id="qoc-9t-Vsc"/>
+                                    <constraint firstAttribute="trailing" secondItem="GH0-pv-uFu" secondAttribute="trailing" id="r9J-fg-ORQ"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Bn9-c0-NPm" firstAttribute="leading" secondItem="jLj-6z-gWW" secondAttribute="leading" constant="16" id="0DU-mr-Per"/>
+                            <constraint firstItem="J8m-Xh-UeS" firstAttribute="centerX" secondItem="jLj-6z-gWW" secondAttribute="centerX" id="2vt-26-LVj"/>
+                            <constraint firstItem="jLj-6z-gWW" firstAttribute="bottom" secondItem="J8m-Xh-UeS" secondAttribute="bottom" id="8HE-s8-xSB"/>
                             <constraint firstItem="jLj-6z-gWW" firstAttribute="trailing" secondItem="PLN-2q-plw" secondAttribute="trailing" constant="16" id="8rY-uh-zWs"/>
+                            <constraint firstItem="J8m-Xh-UeS" firstAttribute="width" secondItem="h2e-H4-GYQ" secondAttribute="width" id="9aI-L9-IZX"/>
+                            <constraint firstItem="J8m-Xh-UeS" firstAttribute="top" secondItem="jLj-6z-gWW" secondAttribute="top" constant="116" id="cdI-MX-CED"/>
                             <constraint firstItem="Bn9-c0-NPm" firstAttribute="top" secondItem="jLj-6z-gWW" secondAttribute="top" constant="50" id="cvO-6w-K9X"/>
                             <constraint firstItem="PLN-2q-plw" firstAttribute="top" secondItem="jLj-6z-gWW" secondAttribute="top" constant="50" id="gfk-GR-wRh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jLj-6z-gWW"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="gU2-ji-9Hp"/>
-                                <exclude reference="ub0-Mm-vwk"/>
-                            </mask>
-                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Services" image="third" id="tT8-b6-E7g"/>
+                    <size key="freeformSize" width="375" height="1000"/>
                     <connections>
                         <outlet property="alertButton" destination="PLN-2q-plw" id="qxx-aB-bRp"/>
-                        <outlet property="netflixService" destination="gU2-ji-9Hp" id="UVe-GN-073"/>
-                        <outlet property="spotifyService" destination="ub0-Mm-vwk" id="eyD-pN-a4F"/>
+                        <outlet property="scrollView" destination="GH0-pv-uFu" id="qrX-ib-tgz"/>
+                        <outlet property="scrollViewContainer" destination="J8m-Xh-UeS" id="xYt-Tp-gtt"/>
+                        <outlet property="titre" destination="Bn9-c0-NPm" id="VRI-wH-ZW4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ja-9E-eLd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749.60000000000002" y="1067.3163418290856"/>
+            <point key="canvasLocation" x="749.60000000000002" y="1265.6671664167918"/>
         </scene>
         <!--À propos-->
         <scene sceneID="eZg-rJ-VrX">
@@ -250,7 +261,7 @@ Robin Dupret</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3na-gv-ovE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="1755"/>
+            <point key="canvasLocation" x="750" y="2175"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -276,9 +287,7 @@ Robin Dupret</string>
     <resources>
         <image name="first" width="30" height="30"/>
         <image name="fourth" width="30" height="30"/>
-        <image name="netflix.png" width="500" height="250"/>
         <image name="second" width="30" height="30"/>
-        <image name="spotify.png" width="500" height="250"/>
         <image name="third" width="30" height="30"/>
     </resources>
 </document>
