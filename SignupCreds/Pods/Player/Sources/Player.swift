@@ -269,7 +269,7 @@ open class Player: UIViewController {
                 let track = playerItem.asset.tracks(withMediaType: .video).first {
 
                 let size = track.naturalSize.applying(track.preferredTransform)
-                return CGSize(width: abs(size.width), height: abs(size.height))
+                return CGSize(width: abs(size.width), height: fabs(size.height))
             } else {
                 return CGSize.zero
             }
@@ -596,10 +596,10 @@ extension Player {
     // MARK: - UIApplication
     
     internal func addApplicationObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(handleApplicationWillResignActive(_:)), name: UIApplication.willResignActiveNotification, object: UIApplication.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleApplicationDidBecomeActive(_:)), name: UIApplication.didBecomeActiveNotification, object: UIApplication.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleApplicationDidEnterBackground(_:)), name: UIApplication.didEnterBackgroundNotification, object: UIApplication.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleApplicationWillEnterForeground(_:)), name: UIApplication.willEnterForegroundNotification, object: UIApplication.shared)
+        //NotificationCenter.default.addObserver(self, selector: #selector(handleApplicationWillResignActive(_:)), name: .UIApplication.willResignActiveNotification, object: UIApplication.shared)
+        //NotificationCenter.default.addObserver(self, selector: #selector(handleApplicationDidBecomeActive(_:)), name: .UIApplication.didBecomeActiveNotification, object: UIApplication.shared)
+        //NotificationCenter.default.addObserver(self, selector: #selector(handleApplicationDidEnterBackground(_:)), name: .UIApplication.didEnterBackgroundNotification, object: UIApplication.shared)
+        //NotificationCenter.default.addObserver(self, selector: #selector(handleApplicationWillEnterForeground(_:)), name: .UIApplication.willEnterForegroundNotification, object: UIApplication.shared)
     }
     
     internal func removeApplicationObservers() {

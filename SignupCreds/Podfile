@@ -6,4 +6,5 @@ target 'SignupCreds' do
   use_frameworks!
 
   pod 'Cards'
+  pod 'Eureka'
 end
