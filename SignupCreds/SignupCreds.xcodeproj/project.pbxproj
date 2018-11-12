@@ -16,6 +16,8 @@
 		00CD7D49215CC12400A966EB /* FourthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CD7D48215CC12400A966EB /* FourthViewController.swift */; };
 		00CD7D4B215CC17100A966EB /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CD7D4A215CC17100A966EB /* ThirdViewController.swift */; };
 		00CD7D4F215CCA5D00A966EB /* service.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CD7D4E215CCA5D00A966EB /* service.json */; };
+		00FA8B362199ABBB00C58948 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA8B352199ABBB00C58948 /* BaseController.swift */; };
+		00FA8B382199CB4E00C58948 /* BarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA8B372199CB4E00C58948 /* BarController.swift */; };
 		7BA2C52726930997988B82FE /* Pods_SignupCreds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1538A4DD16228474203900 /* Pods_SignupCreds.framework */; };
 		7E64589C215CEAD900563D54 /* spotify.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E64589A215CEAD800563D54 /* spotify.png */; };
 		7E64589D215CEAD900563D54 /* netflix.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E64589B215CEAD800563D54 /* netflix.png */; };
@@ -33,6 +35,8 @@
 		00CD7D48215CC12400A966EB /* FourthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthViewController.swift; sourceTree = "<group>"; };
 		00CD7D4A215CC17100A966EB /* ThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		00CD7D4E215CCA5D00A966EB /* service.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = service.json; sourceTree = "<group>"; };
+		00FA8B352199ABBB00C58948 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
+		00FA8B372199CB4E00C58948 /* BarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarController.swift; sourceTree = "<group>"; };
 		2BA4E8EAD325F5E5D14AF18B /* Pods-SignupCreds.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SignupCreds.release.xcconfig"; path = "Pods/Target Support Files/Pods-SignupCreds/Pods-SignupCreds.release.xcconfig"; sourceTree = "<group>"; };
 		7E64589A215CEAD800563D54 /* spotify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spotify.png; sourceTree = "<group>"; };
 		7E64589B215CEAD800563D54 /* netflix.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = netflix.png; sourceTree = "<group>"; };
@@ -73,6 +77,7 @@
 		00CD7D31215CBE9200A966EB /* SignupCreds */ = {
 			isa = PBXGroup;
 			children = (
+				00FA8B372199CB4E00C58948 /* BarController.swift */,
 				00CD7D4E215CCA5D00A966EB /* service.json */,
 				00CD7D32215CBE9200A966EB /* AppDelegate.swift */,
 				00CD7D34215CBE9200A966EB /* FirstViewController.swift */,
@@ -85,6 +90,7 @@
 				00CD7D40215CBE9400A966EB /* Info.plist */,
 				7E64589B215CEAD800563D54 /* netflix.png */,
 				7E64589A215CEAD800563D54 /* spotify.png */,
+				00FA8B352199ABBB00C58948 /* BaseController.swift */,
 			);
 			path = SignupCreds;
 			sourceTree = "<group>";
@@ -237,6 +243,8 @@
 				00CD7D33215CBE9200A966EB /* AppDelegate.swift in Sources */,
 				00CD7D4B215CC17100A966EB /* ThirdViewController.swift in Sources */,
 				00CD7D35215CBE9200A966EB /* FirstViewController.swift in Sources */,
+				00FA8B362199ABBB00C58948 /* BaseController.swift in Sources */,
+				00FA8B382199CB4E00C58948 /* BarController.swift in Sources */,
 				00CD7D49215CC12400A966EB /* FourthViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

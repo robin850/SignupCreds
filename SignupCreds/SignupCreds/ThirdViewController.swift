@@ -9,10 +9,9 @@
 import UIKit
 import Cards
 
-class ThirdViewController : UIViewController {
+class ThirdViewController : UIViewController, BaseController {
     
     @IBOutlet weak var alertButton: UIButton!
-    let appleBlue = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
     
     @IBOutlet weak var titre: UILabel!
     @IBOutlet weak var scrollViewContainer: UIScrollView!
@@ -29,10 +28,7 @@ class ThirdViewController : UIViewController {
         self.scrollView.frame = CGRect(x: 0, y: 139, width: self.scrollView.frame.width, height: self.scrollView.frame.height + nouvelleHauteur)
         self.view.frame = CGRect(x: 0, y: 0, width: self.scrollView.frame.width, height: self.scrollView.frame.height + nouvelleHauteur + 139)
         
-        self.alertButton.backgroundColor = .clear
-        self.alertButton.layer.cornerRadius = 15
-        self.alertButton.layer.borderWidth = 1
-        self.alertButton.layer.borderColor = appleBlue.cgColor
+        setModalButtonStyle(button: alertButton)
         
         let jsonPath = Bundle.main.url(forResource: "service", withExtension: "json")
         
@@ -85,5 +81,10 @@ class ThirdViewController : UIViewController {
         }
         // Do any additional setup after loading the view, typically from a nib.
         
+    }
+
+    @IBAction func modalButtonClick(sender _ : Any) {
+        let controller = displayModalController()
+        present(controller, animated: true, completion: nil)
     }
 }

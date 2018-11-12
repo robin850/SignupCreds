@@ -8,19 +8,17 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SecondViewController : UIViewController, BaseController {
+    @IBOutlet weak var alertButton : UIButton!
 
-    @IBOutlet weak var alertButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        let appleBlue = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
-        self.alertButton.backgroundColor = .clear
-        self.alertButton.layer.cornerRadius = 15
-        self.alertButton.layer.borderWidth = 1
-        self.alertButton.layer.borderColor = appleBlue.cgColor
-        // Do any additional setup after loading the view, typically from a nib.
+
+        setModalButtonStyle(button: self.alertButton)
     }
 
-
+    @IBAction func modalButtonClick(sender _ : Any) {
+        let controller = displayModalController()
+        present(controller, animated: true, completion: nil)
+    }
 }
-
