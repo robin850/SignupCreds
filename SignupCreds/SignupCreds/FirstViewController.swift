@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import Eureka
 
-class FirstViewController: FormViewController, BaseController {
+class FirstViewController: UIViewController, BaseController {
     //var service : Int?
     
     @IBOutlet weak var alertButton: UIButton!
@@ -24,47 +23,8 @@ class FirstViewController: FormViewController, BaseController {
         //defaultFormView.isHidden = true
         
         let jsonPath = Bundle.main.url(forResource: "service", withExtension: "json")
-        
-        form +++ Section("info")
-            <<< TextRow(){ row in
-                row.title = "Nom"
-                row.placeholder = "Votre nom"
-            }
-            <<< TextRow(){ row in
-                row.title = "Prénom"
-                row.placeholder = "Votre prénom"
-            }
-            <<< SegmentedRow<String>() {
-               //  $0.title = "Sexe"
-               // $0.selectorTitle = "Genre"
-                $0.options = ["Homme","Femme"]
-                $0.value = "Homme"    // initially selected
-        }
-            <<< TextRow(){ row in
-                row.title = "Ville"
-                row.placeholder = "Votre ville"
-        }
-            form +++ Section("abonnement")
-            <<< LabelRow { row in
-                row.title = "Abonnement"
-                row.cell.textLabel?.numberOfLines = 0
-        }
-            <<< SegmentedRow<String>() {
-                //  $0.title = "Sexe"
-                // $0.selectorTitle = "Genre"
-                $0.options = ["3 mois","6 mois", "1 ans"]
-                $0.value = "6 mois"    // initially selected
-        }
-            form +++ Section("newsletter")
-            <<< LabelRow { row in
-                row.title = "Newsletter"
-                row.cell.textLabel?.numberOfLines = 0
-        }
-            <<< SwitchRow("switchRowTag"){
-                $0.title = "Newsletter"
-        }
     
-        
+        generateForm(-1)
         
         //service = 0
         
@@ -101,6 +61,10 @@ class FirstViewController: FormViewController, BaseController {
     @IBAction func modalButtonClick(sender _ : Any) {
         let controller = displayModalController()
         present(controller, animated: true, completion: nil)
+    }
+
+    func generateForm(service: Int) {
+
     }
 }
 

@@ -10,6 +10,15 @@ import Foundation
 import UIKit
 
 class BarController : UITabBarController {
+    public var service : Int? {
+        didSet {
+            let controller = self.viewControllers![0] as! FirstViewController
+
+            self.selectedIndex = 0
+            controller.generateForm(self.service)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         

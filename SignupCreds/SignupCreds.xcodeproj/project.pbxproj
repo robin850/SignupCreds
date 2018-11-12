@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		008415AC2199EF9800CE9E6D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008415AB2199EF9800CE9E6D /* Card.swift */; };
+		008415AE2199EFDD00CE9E6D /* CardHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008415AD2199EFDD00CE9E6D /* CardHighlight.swift */; };
+		008415B22199F01400CE9E6D /* LayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008415B12199F01400CE9E6D /* LayoutHelper.swift */; };
+		008415B42199F03300CE9E6D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008415B32199F03300CE9E6D /* DetailViewController.swift */; };
 		00CD7D33215CBE9200A966EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CD7D32215CBE9200A966EB /* AppDelegate.swift */; };
 		00CD7D35215CBE9200A966EB /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CD7D34215CBE9200A966EB /* FirstViewController.swift */; };
 		00CD7D37215CBE9200A966EB /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CD7D36215CBE9200A966EB /* SecondViewController.swift */; };
@@ -18,12 +22,15 @@
 		00CD7D4F215CCA5D00A966EB /* service.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CD7D4E215CCA5D00A966EB /* service.json */; };
 		00FA8B362199ABBB00C58948 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA8B352199ABBB00C58948 /* BaseController.swift */; };
 		00FA8B382199CB4E00C58948 /* BarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA8B372199CB4E00C58948 /* BarController.swift */; };
-		7BA2C52726930997988B82FE /* Pods_SignupCreds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C1538A4DD16228474203900 /* Pods_SignupCreds.framework */; };
 		7E64589C215CEAD900563D54 /* spotify.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E64589A215CEAD800563D54 /* spotify.png */; };
 		7E64589D215CEAD900563D54 /* netflix.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E64589B215CEAD800563D54 /* netflix.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		008415AB2199EF9800CE9E6D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		008415AD2199EFDD00CE9E6D /* CardHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHighlight.swift; sourceTree = "<group>"; };
+		008415B12199F01400CE9E6D /* LayoutHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutHelper.swift; sourceTree = "<group>"; };
+		008415B32199F03300CE9E6D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		00CD7D2F215CBE9200A966EB /* SignupCreds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignupCreds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00CD7D32215CBE9200A966EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00CD7D34215CBE9200A966EB /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -37,11 +44,8 @@
 		00CD7D4E215CCA5D00A966EB /* service.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = service.json; sourceTree = "<group>"; };
 		00FA8B352199ABBB00C58948 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		00FA8B372199CB4E00C58948 /* BarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarController.swift; sourceTree = "<group>"; };
-		2BA4E8EAD325F5E5D14AF18B /* Pods-SignupCreds.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SignupCreds.release.xcconfig"; path = "Pods/Target Support Files/Pods-SignupCreds/Pods-SignupCreds.release.xcconfig"; sourceTree = "<group>"; };
 		7E64589A215CEAD800563D54 /* spotify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spotify.png; sourceTree = "<group>"; };
 		7E64589B215CEAD800563D54 /* netflix.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = netflix.png; sourceTree = "<group>"; };
-		9C1538A4DD16228474203900 /* Pods_SignupCreds.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SignupCreds.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BCFBFE542ED01D7FFF8A7F9D /* Pods-SignupCreds.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SignupCreds.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SignupCreds/Pods-SignupCreds.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +53,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7BA2C52726930997988B82FE /* Pods_SignupCreds.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,8 +64,6 @@
 			children = (
 				00CD7D31215CBE9200A966EB /* SignupCreds */,
 				00CD7D30215CBE9200A966EB /* Products */,
-				EC6CD6B1DB5582581C453A6D /* Pods */,
-				3E232A5E8C9B5DC2143EEBD7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,25 +92,12 @@
 				7E64589B215CEAD800563D54 /* netflix.png */,
 				7E64589A215CEAD800563D54 /* spotify.png */,
 				00FA8B352199ABBB00C58948 /* BaseController.swift */,
+				008415AB2199EF9800CE9E6D /* Card.swift */,
+				008415AD2199EFDD00CE9E6D /* CardHighlight.swift */,
+				008415B12199F01400CE9E6D /* LayoutHelper.swift */,
+				008415B32199F03300CE9E6D /* DetailViewController.swift */,
 			);
 			path = SignupCreds;
-			sourceTree = "<group>";
-		};
-		3E232A5E8C9B5DC2143EEBD7 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				9C1538A4DD16228474203900 /* Pods_SignupCreds.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		EC6CD6B1DB5582581C453A6D /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				BCFBFE542ED01D7FFF8A7F9D /* Pods-SignupCreds.debug.xcconfig */,
-				2BA4E8EAD325F5E5D14AF18B /* Pods-SignupCreds.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,7 +107,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00CD7D43215CBE9400A966EB /* Build configuration list for PBXNativeTarget "SignupCreds" */;
 			buildPhases = (
-				B4FEFF4656E5D12AC6AAC35B /* [CP] Check Pods Manifest.lock */,
 				00CD7D2B215CBE9200A966EB /* Sources */,
 				00CD7D2C215CBE9200A966EB /* Frameworks */,
 				00CD7D2D215CBE9200A966EB /* Resources */,
@@ -184,54 +171,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		60C2DE482BB5181F243035FB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SignupCreds/Pods-SignupCreds-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Cards/Cards.framework",
-				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
-				"${BUILT_PRODUCTS_DIR}/Player/Player.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cards.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Player.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SignupCreds/Pods-SignupCreds-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B4FEFF4656E5D12AC6AAC35B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SignupCreds-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -239,13 +178,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				008415B42199F03300CE9E6D /* DetailViewController.swift in Sources */,
 				00CD7D37215CBE9200A966EB /* SecondViewController.swift in Sources */,
+				008415B22199F01400CE9E6D /* LayoutHelper.swift in Sources */,
+				008415AE2199EFDD00CE9E6D /* CardHighlight.swift in Sources */,
 				00CD7D33215CBE9200A966EB /* AppDelegate.swift in Sources */,
 				00CD7D4B215CC17100A966EB /* ThirdViewController.swift in Sources */,
 				00CD7D35215CBE9200A966EB /* FirstViewController.swift in Sources */,
 				00FA8B362199ABBB00C58948 /* BaseController.swift in Sources */,
 				00FA8B382199CB4E00C58948 /* BarController.swift in Sources */,
 				00CD7D49215CC12400A966EB /* FourthViewController.swift in Sources */,
+				008415AC2199EF9800CE9E6D /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,17 +332,16 @@
 		};
 		00CD7D44215CBE9400A966EB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BCFBFE542ED01D7FFF8A7F9D /* Pods-SignupCreds.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 99JFP5L2LU;
+				DEVELOPMENT_TEAM = 8ATQ8S4P7T;
 				INFOPLIST_FILE = SignupCreds/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = sathoro.SignupCreds;
+				PRODUCT_BUNDLE_IDENTIFIER = sathoro.SignupCredss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -408,17 +350,16 @@
 		};
 		00CD7D45215CBE9400A966EB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2BA4E8EAD325F5E5D14AF18B /* Pods-SignupCreds.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 99JFP5L2LU;
+				DEVELOPMENT_TEAM = 8ATQ8S4P7T;
 				INFOPLIST_FILE = SignupCreds/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = sathoro.SignupCreds;
+				PRODUCT_BUNDLE_IDENTIFIER = sathoro.SignupCredss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

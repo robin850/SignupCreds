@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Cards
 
 class ThirdViewController : UIViewController, BaseController {
     
@@ -19,57 +18,105 @@ class ThirdViewController : UIViewController, BaseController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var margeOmbre = CGFloat(25) // Marge poour qu'on voit la première ombre en entier
-        let largeur = CGFloat(self.view.frame.width - 32) // Taille de la boite
-        let hauteurGlobale = CGFloat(margeOmbre + 2 * largeur + 100) // Hauteur globale de la scrollView avec deux boites
-        let nouvelleHauteur = CGFloat(self.scrollView.frame.height + hauteurGlobale)
-        self.scrollViewContainer.frame = CGRect(x: 0, y: 139, width: self.scrollViewContainer.frame.width, height: self.scrollViewContainer.frame.height + nouvelleHauteur)
-        self.scrollView.frame = CGRect(x: 0, y: 139, width: self.scrollView.frame.width, height: self.scrollView.frame.height + nouvelleHauteur)
-        self.view.frame = CGRect(x: 0, y: 0, width: self.scrollView.frame.width, height: self.scrollView.frame.height + nouvelleHauteur + 139)
-        
+
         setModalButtonStyle(button: alertButton)
-        
+
+        /* Marge poour qu'on voit la première ombre en entier */
+        var margeOmbre = CGFloat(25)
+
+        /* Taille de la boite */
+        let largeur = CGFloat(self.view.frame.width - 32)
+
+        /* Hauteur globale de la scrollView */
+        let hauteurGlobale = CGFloat(margeOmbre + 2 * largeur + 100)
+
+        /* Hauteur totale ; hauteur de la scrollview + la nouvelle calculée */
+        let nouvelleHauteur = CGFloat(self.scrollView.frame.height + hauteurGlobale)
+
+        self.scrollViewContainer.frame = CGRect(
+            x: 0,
+            y: 139,
+            width: self.scrollViewContainer.frame.width,
+            height: self.scrollViewContainer.frame.height + nouvelleHauteur
+        )
+
+        self.scrollView.frame = CGRect(
+            x: 0,
+            y: 139,
+            width: self.scrollView.frame.width,
+            height: self.scrollView.frame.height + nouvelleHauteur
+        )
+
+        self.view.frame = CGRect(
+            x: 0,
+            y: 0,
+            width: self.scrollView.frame.width,
+            height: self.scrollView.frame.height + nouvelleHauteur + 139
+        )
+
+        forEachService(closure: { (title, imageData, serviceIndex) in
+            let image = UIImage(data: imageData as Data)
+
+            let card = CardHighlight(frame: CGRect(x: 16, y: margeOmbre, width: largeur , height: largeur - 64))
+
+            card.backgroundColor = UIColor(
+                red:   51/255,
+                green: 51/255,
+                blue:  51/255,
+                alpha: 1
+            )
+
+            card.icon       = image
+            card.title      = title
+            card.textColor  = UIColor.white
+            card.buttonText = "Sélectionner"
+
+            card.onClick = {
+                let controller = self.tabBarController! as! BarController
+                controller.service = serviceIndex
+            }
+
+            let cardContentVC = self.storyboard!.instantiateViewController(withIdentifier: "Services")
+            card.shouldPresent(cardContentVC, from: self, fullscreen: false)
+
+            self.scrollView.addSubview(card)
+            margeOmbre = margeOmbre + largeur + CGFloat(40)
+
+        })        
+    }
+
+    @IBAction func modalButtonClick(sender _ : Any) {
+        let controller = displayModalController()
+        present(controller, animated: true, completion: nil)
+    }
+
+    /* Permet de parcourir tous les éléments */
+    func forEachService(closure: @escaping (_ title : String, _ image: NSData, _ index : Int) -> Void) {
         let jsonPath = Bundle.main.url(forResource: "service", withExtension: "json")
-        
+
         do {
             let data = try Data(contentsOf: jsonPath!)
             let json = try JSONSerialization.jsonObject(with: data, options: [])
             let jsonServices = json as! [String : Any]
-            
+
+            var indice = 0
+
             for title in jsonServices["services"] as! Array<[String: Any]> {
                 for element in title["elements"] as! Array<[String : Any]> {
                     let section = element["section"] as! String
-                    
-                    if(section == "title") {
+
+                    if (section == "title") {
                         let values = element["value"] as! Array<String>
                         for valeur in values {
-                            
+
                             let imageUrlString = valeur
                             let imageUrl:URL = URL(string: imageUrlString)!
-                            
+
                             DispatchQueue.global(qos: .userInitiated).async {
                                 let imageData:NSData = NSData(contentsOf: imageUrl)!
                                 DispatchQueue.main.async {
-                                    let image = UIImage(data: imageData as Data)
-                                
-                                    let card = CardHighlight(frame: CGRect(x: 16, y: margeOmbre, width: largeur , height: largeur))
-                                    
-                                    card.backgroundColor = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1)
-                                    card.icon = image
-                                    card.title = title["title"] as! String
-                                    card.itemTitle = "Inscription"
-                                    card.itemSubtitle = ""
-                                    card.textColor = UIColor.white
-                                    card.buttonText = "Sélectionner"
-                                    
-                                    card.hasParallax = true
-                                    
-                                    let cardContentVC = self.storyboard!.instantiateViewController(withIdentifier: "Services")
-                                    card.shouldPresent(cardContentVC, from: self, fullscreen: false)
-                                    
-                                    self.scrollView.addSubview(card)
-                                    margeOmbre = margeOmbre + largeur + CGFloat(40)
+                                    closure(title["title"] as! String, imageData, indice)
+                                    indice = indice + 1
                                 }
                             }
                         }
@@ -79,12 +126,5 @@ class ThirdViewController : UIViewController, BaseController {
         } catch {
             print(error)
         }
-        // Do any additional setup after loading the view, typically from a nib.
-        
-    }
-
-    @IBAction func modalButtonClick(sender _ : Any) {
-        let controller = displayModalController()
-        present(controller, animated: true, completion: nil)
     }
 }
