@@ -27,11 +27,17 @@ extension BaseController {
         
         var x = ""
         if kerr == KERN_SUCCESS {
-            x = ("Mémoire utilisée : \(info.resident_size / UInt64(exactly: 1e6)!) MB")
+            x = ("Mémoire RAM utilisée : \(info.resident_size / UInt64(exactly: 1e6)!) MB")
         }
         else {
-            x = "Error with task_info(): " +
+            x = "Erreur task_info(): " +
                 (String(cString: mach_error_string(kerr), encoding: String.Encoding.ascii) ?? "unknown error")
+        }
+        
+        if let bytes = deviceRemainingFreeSpaceInBytes() {
+            x += "\nMémoire ROM disponible : \(bytes / Int64(exactly: 1e9)!) GB"
+        } else {
+            x += "\nMémoire ROM disponible : Erreur !"
         }
         let alertController = UIAlertController(title: "Infos Système", message: x, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -46,6 +52,18 @@ extension BaseController {
         button.layer.cornerRadius = 15
         button.layer.borderWidth = 1
         button.layer.borderColor = appleBlue.cgColor
+    }
+    
+    func deviceRemainingFreeSpaceInBytes() -> Int64? {
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last!
+        guard
+            let systemAttributes = try? FileManager.default.attributesOfFileSystem(forPath: documentDirectory),
+            let freeSize = systemAttributes[.systemFreeSize] as? NSNumber
+            else {
+                // something failed
+                return nil
+        }
+        return freeSize.int64Value
     }
 
 }
