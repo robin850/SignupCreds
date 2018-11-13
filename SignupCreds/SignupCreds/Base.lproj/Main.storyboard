@@ -40,7 +40,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="buttonClick:" destination="9pv-A4-QxB" eventType="touchUpInside" id="aTp-ei-O15"/>
                                     <action selector="modalButtonClickWithSender:" destination="9pv-A4-QxB" eventType="primaryActionTriggered" id="kqa-hr-BdB"/>
                                 </connections>
                             </button>
@@ -80,7 +79,7 @@
                     <tabBarItem key="tabBarItem" title="Formulaire" image="first" id="acW-dT-cKf"/>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
-                        <outlet property="alertButton" destination="Shk-Dd-h5a" id="lRc-Ar-SdR"/>
+                        <outlet property="alertButton" destination="Shk-Dd-h5a" id="1Yj-r0-I63"/>
                         <outlet property="scrollView" destination="QhD-xU-rua" id="1SK-FO-Vga"/>
                     </connections>
                 </viewController>
