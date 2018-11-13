@@ -25,7 +25,10 @@ extension BaseController {
             }
         }
         
+        /* Création de la chaine de caractères pour le popup */
         var x = ""
+        
+        /* Calcul de la RAM utilisée */
         if kerr == KERN_SUCCESS {
             x = ("Mémoire RAM utilisée : \(info.resident_size / UInt64(exactly: 1e6)!) MB")
         }
@@ -34,11 +37,21 @@ extension BaseController {
                 (String(cString: mach_error_string(kerr), encoding: String.Encoding.ascii) ?? "unknown error")
         }
         
-        if let bytes = deviceRemainingFreeSpaceInBytes() {
-            x += "\nMémoire ROM disponible : \(bytes / Int64(exactly: 1e9)!) GB"
+        /* Calcul de la mémoire ROM restante */
+        if let usedRom = deviceRemainingFreeSpaceInBytes() {
+            x += "\n\nMémoire ROM disponible : \(usedRom / Int64(exactly: 1e9)!) GB"
         } else {
-            x += "\nMémoire ROM disponible : Erreur !"
+            x += "\n\nMémoire ROM disponible : Erreur !"
         }
+        
+        /* Calcul de la mémoire RAM totale */
+        if let totalMemory = deviceSpaceInBytes() {
+            x += "\nMémoire ROM totale : \(totalMemory / Int64(exactly: 1e9)!) GB"
+        } else {
+            x += "\nMémoire ROM totale : Erreur !"
+        }
+        
+        /* Création du popup */
         let alertController = UIAlertController(title: "Infos Système", message: x, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alertController.addAction(defaultAction)
@@ -54,15 +67,23 @@ extension BaseController {
         button.layer.borderColor = appleBlue.cgColor
     }
     
+    /* Calcul de la mémoire ROM utilisée */
     func deviceRemainingFreeSpaceInBytes() -> Int64? {
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last!
         guard
             let systemAttributes = try? FileManager.default.attributesOfFileSystem(forPath: documentDirectory),
             let freeSize = systemAttributes[.systemFreeSize] as? NSNumber
-            else {
-                // something failed
-                return nil
-        }
+            else {return nil}
+        return freeSize.int64Value
+    }
+    
+    /* Calcul de la mémoire ROM totale */
+    func deviceSpaceInBytes() -> Int64? {
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last!
+        guard
+            let systemAttributes = try? FileManager.default.attributesOfFileSystem(forPath: documentDirectory),
+            let freeSize = systemAttributes[.systemSize] as? NSNumber
+            else {return nil}
         return freeSize.int64Value
     }
 
