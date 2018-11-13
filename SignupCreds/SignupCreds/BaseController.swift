@@ -27,7 +27,7 @@ extension BaseController {
         
         var x = ""
         if kerr == KERN_SUCCESS {
-            x = ("Memory in use (in bytes): \(info.resident_size)")
+            x = ("Mémoire utilisée : \(info.resident_size / UInt64(exactly: 1e6)!) MB")
         }
         else {
             x = "Error with task_info(): " +
