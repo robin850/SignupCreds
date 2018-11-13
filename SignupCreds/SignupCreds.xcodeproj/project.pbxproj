@@ -10,7 +10,6 @@
 		008415AC2199EF9800CE9E6D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008415AB2199EF9800CE9E6D /* Card.swift */; };
 		008415AE2199EFDD00CE9E6D /* CardHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008415AD2199EFDD00CE9E6D /* CardHighlight.swift */; };
 		008415B22199F01400CE9E6D /* LayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008415B12199F01400CE9E6D /* LayoutHelper.swift */; };
-		008415B42199F03300CE9E6D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008415B32199F03300CE9E6D /* DetailViewController.swift */; };
 		00CD7D33215CBE9200A966EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CD7D32215CBE9200A966EB /* AppDelegate.swift */; };
 		00CD7D35215CBE9200A966EB /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CD7D34215CBE9200A966EB /* FirstViewController.swift */; };
 		00CD7D37215CBE9200A966EB /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CD7D36215CBE9200A966EB /* SecondViewController.swift */; };
@@ -30,7 +29,6 @@
 		008415AB2199EF9800CE9E6D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		008415AD2199EFDD00CE9E6D /* CardHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHighlight.swift; sourceTree = "<group>"; };
 		008415B12199F01400CE9E6D /* LayoutHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutHelper.swift; sourceTree = "<group>"; };
-		008415B32199F03300CE9E6D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		00CD7D2F215CBE9200A966EB /* SignupCreds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SignupCreds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00CD7D32215CBE9200A966EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		00CD7D34215CBE9200A966EB /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -95,7 +93,6 @@
 				008415AB2199EF9800CE9E6D /* Card.swift */,
 				008415AD2199EFDD00CE9E6D /* CardHighlight.swift */,
 				008415B12199F01400CE9E6D /* LayoutHelper.swift */,
-				008415B32199F03300CE9E6D /* DetailViewController.swift */,
 			);
 			path = SignupCreds;
 			sourceTree = "<group>";
@@ -110,7 +107,6 @@
 				00CD7D2B215CBE9200A966EB /* Sources */,
 				00CD7D2C215CBE9200A966EB /* Frameworks */,
 				00CD7D2D215CBE9200A966EB /* Resources */,
-				60C2DE482BB5181F243035FB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -170,15 +166,11 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		00CD7D2B215CBE9200A966EB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				008415B42199F03300CE9E6D /* DetailViewController.swift in Sources */,
 				00CD7D37215CBE9200A966EB /* SecondViewController.swift in Sources */,
 				008415B22199F01400CE9E6D /* LayoutHelper.swift in Sources */,
 				008415AE2199EFDD00CE9E6D /* CardHighlight.swift in Sources */,

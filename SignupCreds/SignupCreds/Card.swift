@@ -9,15 +9,6 @@ import UIKit
 
 @objc public protocol CardDelegate {
 
-    @objc optional func cardDidTapInside(card: Card)
-    @objc optional func cardWillShowDetailView(card: Card)
-    @objc optional func cardDidShowDetailView(card: Card)
-    @objc optional func cardWillCloseDetailView(card: Card)
-    @objc optional func cardDidCloseDetailView(card: Card)
-    @objc optional func cardIsShowingDetail(card: Card)
-    @objc optional func cardIsHidingDetail(card: Card)
-    @objc optional func cardDetailIsScrolling(card: Card)
-
     @objc optional func cardHighlightDidTapButton(card: CardHighlight, button: UIButton)
 }
 
@@ -92,33 +83,15 @@ import UIKit
     @IBInspectable public var onClick : (() -> Void)! = {}
 
     /**
-     contentViewController  -> The view controller to present when the card is tapped
-     from                   -> Your current ViewController (self)
-     */
-    public func shouldPresent( _ contentViewController: UIViewController?, from superVC: UIViewController?, fullscreen: Bool = false) {
-        if let content = contentViewController {
-            self.superVC = superVC
-            detailVC.addChild(content)
-            detailVC.detailView = content.view
-            detailVC.card = self
-            detailVC.delegate = self.delegate
-            detailVC.isFullscreen = fullscreen
-        }
-    }
-
-    /**
      Delegate for the card. Should extend your VC with CardDelegate.
      */
     public var delegate: CardDelegate?
 
     //Private Vars
     fileprivate var tap = UITapGestureRecognizer()
-    fileprivate var detailVC = DetailViewController()
-    weak var superVC: UIViewController?
     var originalFrame = CGRect.zero
     public var backgroundIV = UIImageView()
     public var insets = CGFloat()
-    var isPresenting = false
 
     //MARK: - View Life Cycle
 
@@ -138,8 +111,6 @@ import UIKit
         self.addGestureRecognizer(tap)
         tap.delegate = self
         tap.cancelsTouchesInView = false
-
-        //detailVC.transitioningDelegate = self
 
         // Adding Subviews
         self.addSubview(backgroundIV)

@@ -76,9 +76,6 @@ class ThirdViewController : UIViewController, BaseController {
                 controller.service = serviceIndex
             }
 
-            let cardContentVC = self.storyboard!.instantiateViewController(withIdentifier: "Services")
-            card.shouldPresent(cardContentVC, from: self, fullscreen: false)
-
             self.scrollView.addSubview(card)
             margeOmbre = margeOmbre + largeur + CGFloat(40)
 
