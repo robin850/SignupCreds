@@ -73,6 +73,7 @@ class FirstViewController: UIViewController, BaseController {
             label.text = "Vous n'avez pas sélectionné de service. Veuillez vous rendre dans l'onglet Services s'il vous plait."
             label.textColor = UIColor.black
             label.numberOfLines = 0
+            label.font = UIFont.systemFont(ofSize: 17.0)
             self.scrollView.addSubview(label)
         }
         
