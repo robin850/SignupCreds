@@ -12,19 +12,14 @@ class FirstViewController: UIViewController, BaseController {
     //var service : Int?
     
     @IBOutlet weak var alertButton: UIButton!
-    
     @IBOutlet weak var scrollView: UIView!
-    @IBOutlet weak var defaultFormView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setModalButtonStyle(button: alertButton)
-
-        //defaultFormView.isHidden = true
         
-        let jsonPath = Bundle.main.url(forResource: "service", withExtension: "json")
-    
-        generateForm(-1)
+        /* Génération dynamique de la vue */
+        generateForm(service: -1)
         
         //service = 0
         
@@ -64,7 +59,25 @@ class FirstViewController: UIViewController, BaseController {
     }
 
     func generateForm(service: Int) {
-
+        
+        /* Récupération du fichier JSON */
+        let jsonPath = Bundle.main.url(forResource: "service", withExtension: "json")
+        let data = try! Data(contentsOf: jsonPath!)
+        let json = try! JSONSerialization.jsonObject(with: data, options: [])
+        let jsonServices = json as! [String : Any]
+        let services     = jsonServices["services"] as! Array<[String: Any]>
+        
+        /* Création d'un label pour indiquer à l'utilisateur de faire un choix de service */
+        if(service == -1) {
+            let label = UILabel(frame: CGRect(x: 16, y: 0, width: self.scrollView.frame.width - 16, height: 100))
+            label.text = "Vous n'avez pas sélectionné de service. Veuillez vous rendre dans l'onglet Services s'il vous plait."
+            label.textColor = UIColor.black
+            label.numberOfLines = 0
+            self.scrollView.addSubview(label)
+        }
+        
+        /* Génération du formulaire */
+        
     }
 }
 

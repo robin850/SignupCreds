@@ -62,21 +62,6 @@
                                     <constraint firstAttribute="trailing" secondItem="QhD-xU-rua" secondAttribute="trailing" id="n42-Cg-DFb"/>
                                 </constraints>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oVN-sP-Sao" userLabel="defaultFormView">
-                                <rect key="frame" x="16" y="139" width="343" height="479"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Veuillez choisir le service auquel vous souhaitez vous inscrire dans l'onglet Services." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Po4-5f-2Gd">
-                                        <rect key="frame" x="0.0" y="-6" width="343" height="77"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="Po4-5f-2Gd" firstAttribute="centerX" secondItem="oVN-sP-Sao" secondAttribute="centerX" id="jMq-Es-Lo2"/>
-                                    <constraint firstItem="Po4-5f-2Gd" firstAttribute="top" secondItem="oVN-sP-Sao" secondAttribute="top" constant="-6" id="rF8-8x-qHz"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -91,23 +76,17 @@
                             <constraint firstItem="GNj-HG-epb" firstAttribute="top" secondItem="gec-hs-AEe" secondAttribute="bottom" constant="33" id="vFT-a9-ktg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="oVN-sP-Sao"/>
-                            </mask>
-                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Formulaire" image="first" id="acW-dT-cKf"/>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
                         <outlet property="alertButton" destination="Shk-Dd-h5a" id="lRc-Ar-SdR"/>
-                        <outlet property="defaultFormView" destination="oVN-sP-Sao" id="72y-a2-JfN"/>
                         <outlet property="scrollView" destination="QhD-xU-rua" id="1SK-FO-Vga"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="-744"/>
+            <point key="canvasLocation" x="749.60000000000002" y="-744.82758620689663"/>
         </scene>
         <!--Résultats-->
         <scene sceneID="wg7-f3-ORb">
