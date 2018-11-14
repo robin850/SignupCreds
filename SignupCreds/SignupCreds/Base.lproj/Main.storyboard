@@ -12,7 +12,7 @@
         <!--Formulaire-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="SignupCreds" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9pv-A4-QxB" customClass="FormViewController" customModule="SignupCreds" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN" userLabel="FormView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -85,12 +85,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749.60000000000002" y="-744.82758620689663"/>
+            <point key="canvasLocation" x="-838" y="1063"/>
         </scene>
         <!--Résultats-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="SignupCreds" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="ResultsViewController" customModule="SignupCreds" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW" userLabel="ResultsView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -129,12 +129,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="360"/>
+            <point key="canvasLocation" x="-1" y="913"/>
         </scene>
         <!--Services-->
         <scene sceneID="FxH-l8-25e">
             <objects>
-                <viewController storyboardIdentifier="Services" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7jo-kO-rwt" customClass="ThirdViewController" customModule="SignupCreds" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Services" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7jo-kO-rwt" customClass="ServicesViewController" customModule="SignupCreds" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="h2e-H4-GYQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -197,12 +197,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ja-9E-eLd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749.60000000000002" y="1265.6671664167918"/>
+            <point key="canvasLocation" x="-1665" y="1062"/>
         </scene>
         <!--À propos-->
         <scene sceneID="eZg-rJ-VrX">
             <objects>
-                <viewController id="WgD-cx-60m" customClass="FourthViewController" customModule="SignupCreds" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="WgD-cx-60m" customClass="AboutViewController" customModule="SignupCreds" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oqa-70-YQx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -249,7 +249,7 @@ Robin Dupret</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3na-gv-ovE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="2175"/>
+            <point key="canvasLocation" x="850" y="913"/>
         </scene>
         <!--Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -261,15 +261,15 @@ Robin Dupret</string>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
+                        <segue destination="7jo-kO-rwt" kind="relationship" relationship="viewControllers" id="iVV-aD-5QZ"/>
                         <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
-                        <segue destination="7jo-kO-rwt" kind="relationship" relationship="viewControllers" id="iVV-aD-5QZ"/>
                         <segue destination="WgD-cx-60m" kind="relationship" relationship="viewControllers" id="zDM-h2-ycC"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="-406" y="-2"/>
         </scene>
     </scenes>
     <resources>

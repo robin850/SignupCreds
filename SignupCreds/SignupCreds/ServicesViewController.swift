@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ThirdViewController : UIViewController, BaseController {
+class ServicesViewController : UIViewController, BaseController {
     
     @IBOutlet weak var alertButton: UIButton!
     

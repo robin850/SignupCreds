@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FourthViewController : UIViewController, BaseController {
+class AboutViewController : UIViewController, BaseController {
     
     @IBOutlet weak var alertButton: UIButton!
     

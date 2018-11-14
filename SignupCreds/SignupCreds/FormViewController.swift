@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController, BaseController {
+class FormViewController: UIViewController, BaseController {
     //var service : Int?
     
     @IBOutlet weak var alertButton: UIButton!
@@ -93,7 +93,7 @@ class FirstViewController: UIViewController, BaseController {
         let button = UIButton(frame: CGRect(x: 16, y: y, width: self.scrollView.frame.width - 16, height: 50))
         button.setTitle("Enregistrer", for: .normal)
         button.setTitleColor(UIColor.blue, for: .normal)
-        button.addTarget(self, action: #selector(FirstViewController.buttonAction(_:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(FormViewController.buttonAction(_:)), for: .touchUpInside)
         self.scrollView.addSubview(button)
     }
     

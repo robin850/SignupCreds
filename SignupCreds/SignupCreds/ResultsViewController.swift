@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController : UIViewController, BaseController {
+class ResultsViewController : UIViewController, BaseController {
     @IBOutlet weak var alertButton : UIButton!
 
     override func viewDidLoad() {
