@@ -60,6 +60,14 @@ class FirstViewController: UIViewController, BaseController {
 
     func generateForm(service: Int) {
         
+        /* Position des éléments dans la vue */
+        var y : CGFloat
+        y = 0
+        
+        /* Marge à placer pour passer à la catégorie suivante */
+        var marginBottom : CGFloat
+        marginBottom = 20
+        
         /* Récupération du fichier JSON */
         let jsonPath = Bundle.main.url(forResource: "service", withExtension: "json")
         let data = try! Data(contentsOf: jsonPath!)
@@ -75,10 +83,24 @@ class FirstViewController: UIViewController, BaseController {
             label.numberOfLines = 0
             label.font = UIFont.systemFont(ofSize: 17.0)
             self.scrollView.addSubview(label)
+            y += label.frame.height + marginBottom
         }
         
         /* Génération du formulaire */
         
+        
+        /* Génération du bouton de validation */
+        let button = UIButton(frame: CGRect(x: 16, y: y, width: self.scrollView.frame.width - 16, height: 50))
+        button.setTitle("Enregistrer", for: .normal)
+        button.setTitleColor(UIColor.blue, for: .normal)
+        button.addTarget(self, action: #selector(FirstViewController.buttonAction(_:)), for: .touchUpInside)
+        self.scrollView.addSubview(button)
     }
+    
+    @objc func buttonAction(_ sender:UIButton!)
+    {
+        print("Ca marche")
+    }
+    
 }
 

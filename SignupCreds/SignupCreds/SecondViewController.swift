@@ -15,6 +15,24 @@ class SecondViewController : UIViewController, BaseController {
         super.viewDidLoad()
 
         setModalButtonStyle(button: self.alertButton)
+        
+        var userDict = [String:Any]()
+        var userArray = [Any]()
+        
+        userDict = [:]
+        userDict.updateValue("Ta grand mere", forKey: "username")
+        userDict.updateValue("lol@lol.fr", forKey: "email")
+        userDict.updateValue("jemangeducaca", forKey: "password")
+        userArray.append(userDict)
+        
+        UserDefaults.standard.set(userArray, forKey: "netflix")
+        
+        for element in userArray {
+            print(element)
+        }
+        
+        UserDefaults.standard.array(forKey: "netflix")
+        
     }
 
     @IBAction func modalButtonClick(sender _ : Any) {

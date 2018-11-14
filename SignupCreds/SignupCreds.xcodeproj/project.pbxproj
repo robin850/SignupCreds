@@ -21,8 +21,6 @@
 		00CD7D4F215CCA5D00A966EB /* service.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CD7D4E215CCA5D00A966EB /* service.json */; };
 		00FA8B362199ABBB00C58948 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA8B352199ABBB00C58948 /* BaseController.swift */; };
 		00FA8B382199CB4E00C58948 /* BarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA8B372199CB4E00C58948 /* BarController.swift */; };
-		7E64589C215CEAD900563D54 /* spotify.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E64589A215CEAD800563D54 /* spotify.png */; };
-		7E64589D215CEAD900563D54 /* netflix.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E64589B215CEAD800563D54 /* netflix.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,8 +40,6 @@
 		00CD7D4E215CCA5D00A966EB /* service.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = service.json; sourceTree = "<group>"; };
 		00FA8B352199ABBB00C58948 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		00FA8B372199CB4E00C58948 /* BarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarController.swift; sourceTree = "<group>"; };
-		7E64589A215CEAD800563D54 /* spotify.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spotify.png; sourceTree = "<group>"; };
-		7E64589B215CEAD800563D54 /* netflix.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = netflix.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,8 +83,6 @@
 				00CD7D3B215CBE9400A966EB /* Assets.xcassets */,
 				00CD7D3D215CBE9400A966EB /* LaunchScreen.storyboard */,
 				00CD7D40215CBE9400A966EB /* Info.plist */,
-				7E64589B215CEAD800563D54 /* netflix.png */,
-				7E64589A215CEAD800563D54 /* spotify.png */,
 				00FA8B352199ABBB00C58948 /* BaseController.swift */,
 				008415AB2199EF9800CE9E6D /* Card.swift */,
 				008415AD2199EFDD00CE9E6D /* CardHighlight.swift */,
@@ -159,8 +153,6 @@
 				00CD7D4F215CCA5D00A966EB /* service.json in Resources */,
 				00CD7D3C215CBE9400A966EB /* Assets.xcassets in Resources */,
 				00CD7D3A215CBE9200A966EB /* Main.storyboard in Resources */,
-				7E64589D215CEAD900563D54 /* netflix.png in Resources */,
-				7E64589C215CEAD900563D54 /* spotify.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
