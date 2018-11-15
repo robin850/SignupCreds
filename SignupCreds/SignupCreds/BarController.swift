@@ -12,7 +12,7 @@ import UIKit
 class BarController : UITabBarController {
     public var service : Int? {
         didSet {
-            let controller = self.viewControllers![2] as! FormViewController
+            let controller = self.viewControllers![1] as! FormViewController
 
             self.selectedIndex = 0
             controller.generateForm(service: self.service!)

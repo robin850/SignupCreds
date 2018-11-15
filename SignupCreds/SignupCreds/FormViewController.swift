@@ -61,12 +61,10 @@ class FormViewController: UIViewController, BaseController {
     func generateForm(service: Int) {
         
         /* Position des éléments dans la vue */
-        var y : CGFloat
-        y = 0
+        var y : CGFloat = 0
         
         /* Marge à placer pour passer à la catégorie suivante */
-        var marginBottom : CGFloat
-        marginBottom = 20
+        let marginBottom : CGFloat = 20
         
         /* Récupération du fichier JSON */
         let jsonPath = Bundle.main.url(forResource: "service", withExtension: "json")
@@ -77,64 +75,124 @@ class FormViewController: UIViewController, BaseController {
         
         /* Création d'un label pour indiquer à l'utilisateur de faire un choix de service */
         if(service == -1) {
-            let label = UILabel(frame: CGRect(x: 16, y: 0, width: self.scrollView.frame.width - 16, height: 100))
+            let label = UILabel(frame: CGRect(x: 16, y: 0, width: self.scrollView.frame.width, height: 100))
             label.text = "Vous n'avez pas sélectionné de service. Veuillez vous rendre dans l'onglet Services s'il vous plait."
             label.textColor = UIColor.black
             label.numberOfLines = 0
             label.font = UIFont.systemFont(ofSize: 17.0)
             self.scrollView.addSubview(label)
             y += label.frame.height + marginBottom
+        } else {
+            self.scrollView.subviews.forEach({$0.removeFromSuperview()})
+            /* Génération du formulaire */
+            let textfield = UITextField(frame: CGRect(x: 16, y: 0, width: self.scrollView.frame.width - 32, height: 35))
+            textfield.placeholder = "Ceci est un TextField"
+            textfield.font = UIFont.systemFont(ofSize: 17)
+            textfield.borderStyle = UITextField.BorderStyle.roundedRect
+            textfield.keyboardType = UIKeyboardType.default
+            textfield.returnKeyType = UIReturnKeyType.done
+            textfield.clearButtonMode = UITextField.ViewMode.whileEditing
+            textfield.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+            textfield.accessibilityIdentifier = "name"
+            textfield.delegate = self as? UITextFieldDelegate
+            self.scrollView.addSubview(textfield)
+            y += textfield.frame.height + marginBottom
+            
+            let items = ["Choix 1", "Choix 2"]
+            let segmentedControl = UISegmentedControl(items: items)
+            segmentedControl.frame = CGRect(x: 16, y: y, width: self.scrollView.frame.width - 32, height: 30)
+            segmentedControl.selectedSegmentIndex = 0
+            segmentedControl.accessibilityIdentifier = "type"
+            self.scrollView.addSubview(segmentedControl)
+            y += segmentedControl.frame.height + marginBottom
+            
+            let switchOnOff = UISwitch(frame: CGRect(x: 16, y: y, width: self.scrollView.frame.width - 32, height: 30))
+            switchOnOff.setOn(true, animated: true)
+            segmentedControl.accessibilityIdentifier = "newsletter"
+            self.scrollView.addSubview(switchOnOff)
+            y += switchOnOff.frame.height + marginBottom
+            
+            /* Génération du bouton de validation */
+            let button = UIButton(frame: CGRect(x: 16, y: y, width: self.scrollView.frame.width, height: 50))
+            button.setTitle("Enregistrer", for: .normal)
+            button.setTitleColor(UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1), for: .normal)
+            button.addTarget(self, action: #selector(FormViewController.buttonAction(_:)), for: .touchUpInside)
+            self.scrollView.addSubview(button)
         }
-        
-        /* Génération du formulaire */
-        
-        
-        /* Génération du bouton de validation */
-        let button = UIButton(frame: CGRect(x: 16, y: y, width: self.scrollView.frame.width - 16, height: 50))
-        button.setTitle("Enregistrer", for: .normal)
-        button.setTitleColor(UIColor.blue, for: .normal)
-        button.addTarget(self, action: #selector(FormViewController.buttonAction(_:)), for: .touchUpInside)
-        self.scrollView.addSubview(button)
     }
     
     @objc func buttonAction(_ sender:UIButton!)
     {
+        var userDict = [String:Any]()
+        var userArray = [Any]()
+        userDict = [:]
         
         print("Ca marche")
+        let allTextField = getAllTextFields(view: self.view)
+        let allSegmentedField = getAllSegmentedFields(view: self.view)
+        let allSwitchField = getAllSwitchFields(view: self.view)
+        
+        if(!(allTextField.isEmpty)) {
+            for txtField in allTextField
+            {
+                userDict.updateValue((txtField.text as! String), forKey: (txtField.accessibilityIdentifier as! String))
+            }
+        }
+
+        if(!(allSegmentedField.isEmpty)) {
+            for segmentedField in allSegmentedField
+            {
+                userDict.updateValue((segmentedField.titleForSegment(at: segmentedField.selectedSegmentIndex) as! String), forKey: (segmentedField.accessibilityIdentifier as! String))
+            }
+        }
+        
+        if(!(allSwitchField.isEmpty)) {
+            for switchField in allSwitchField
+            {
+                userDict.updateValue((switchField.isOn), forKey: (switchField.accessibilityIdentifier as! String))
+            }
+        }
+
+        userArray.append(userDict)
     }
     
     /* Retourne tous les TextField de la vue passée en paramètre */
-    func getAllTextFields(fromView view: UIView)-> [UITextField] {
-        return view.subviews.compactMap { (view) -> [UITextField]? in
-            if view is UITextField {
-                return [(view as! UITextField)]
+    func getAllTextFields(view: UIView) -> [UITextField] {
+        var results = [UITextField]()
+        for subview in view.subviews as [UIView] {
+            if let textField = subview as? UITextField {
+                results += [textField]
             } else {
-                return getAllTextFields(fromView: view)
+                results += getAllTextFields(view: subview)
             }
-            }.flatMap({$0})
+        }
+        return results
     }
     
     /* Retourne tous les Switch de la vue passée en paramètre */
-    func getAllSwitchFields(fromView view: UIView)-> [UISwitch] {
-        return view.subviews.compactMap { (view) -> [UISwitch]? in
-            if view is UISwitch {
-                return [(view as! UISwitch)]
+    func getAllSwitchFields(view: UIView) -> [UISwitch] {
+        var results = [UISwitch]()
+        for subview in view.subviews as [UIView] {
+            if let switchField = subview as? UISwitch {
+                results += [switchField]
             } else {
-                return getAllSwitchFields(fromView: view)
+                results += getAllSwitchFields(view: subview)
             }
-            }.flatMap({$0})
+        }
+        return results
     }
     
     /* Retourne tous les SegmentedControl de la vue passée en paramètre */
-    func getAllSegmentedFields(fromView view: UIView)-> [UISegmentedControl] {
-        return view.subviews.compactMap { (view) -> [UISegmentedControl]? in
-            if view is UISegmentedControl {
-                return [(view as! UISegmentedControl)]
+    func getAllSegmentedFields(view: UIView) -> [UISegmentedControl] {
+        var results = [UISegmentedControl]()
+        for subview in view.subviews as [UIView] {
+            if let segmentedField = subview as? UISegmentedControl {
+                results += [segmentedField]
             } else {
-                return getAllSegmentedFields(fromView: view)
+                results += getAllSegmentedFields(view: subview)
             }
-            }.flatMap({$0})
+        }
+        return results
     }
     
 }
-

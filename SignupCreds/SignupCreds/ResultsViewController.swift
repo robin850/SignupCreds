@@ -15,18 +15,9 @@ class ResultsViewController : UIViewController, BaseController {
         super.viewDidLoad()
 
         setModalButtonStyle(button: self.alertButton)
-        
-        var userDict = [String:Any]()
-        var userArray = [Any]()
-        
-        userDict = [:]
-        userDict.updateValue("Ta grande soeur", forKey: "username")
-        userDict.updateValue("lol@lol.fr", forKey: "email")
-        userDict.updateValue("jemangeducaca", forKey: "password")
-        userArray.append(userDict)
-        
-        UserDefaults.standard.set(userArray, forKey: "netflix")
-        print(UserDefaults.standard.array(forKey: "netflix") as Any)
+
+        //UserDefaults.standard.set(userArray, forKey: "netflix")
+        //print(UserDefaults.standard.array(forKey: "netflix") as Any)
     }
 
     @IBAction func modalButtonClick(sender _ : Any) {
