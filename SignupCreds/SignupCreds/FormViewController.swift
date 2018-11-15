@@ -99,7 +99,41 @@ class FormViewController: UIViewController, BaseController {
     
     @objc func buttonAction(_ sender:UIButton!)
     {
+        
         print("Ca marche")
+    }
+    
+    /* Retourne tous les TextField de la vue passée en paramètre */
+    func getAllTextFields(fromView view: UIView)-> [UITextField] {
+        return view.subviews.compactMap { (view) -> [UITextField]? in
+            if view is UITextField {
+                return [(view as! UITextField)]
+            } else {
+                return getAllTextFields(fromView: view)
+            }
+            }.flatMap({$0})
+    }
+    
+    /* Retourne tous les Switch de la vue passée en paramètre */
+    func getAllSwitchFields(fromView view: UIView)-> [UISwitch] {
+        return view.subviews.compactMap { (view) -> [UISwitch]? in
+            if view is UISwitch {
+                return [(view as! UISwitch)]
+            } else {
+                return getAllSwitchFields(fromView: view)
+            }
+            }.flatMap({$0})
+    }
+    
+    /* Retourne tous les SegmentedControl de la vue passée en paramètre */
+    func getAllSegmentedFields(fromView view: UIView)-> [UISegmentedControl] {
+        return view.subviews.compactMap { (view) -> [UISegmentedControl]? in
+            if view is UISegmentedControl {
+                return [(view as! UISegmentedControl)]
+            } else {
+                return getAllSegmentedFields(fromView: view)
+            }
+            }.flatMap({$0})
     }
     
 }

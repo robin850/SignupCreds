@@ -20,19 +20,13 @@ class ResultsViewController : UIViewController, BaseController {
         var userArray = [Any]()
         
         userDict = [:]
-        userDict.updateValue("Ta grand mere", forKey: "username")
+        userDict.updateValue("Ta grande soeur", forKey: "username")
         userDict.updateValue("lol@lol.fr", forKey: "email")
         userDict.updateValue("jemangeducaca", forKey: "password")
         userArray.append(userDict)
         
         UserDefaults.standard.set(userArray, forKey: "netflix")
-        
-        for element in userArray {
-            print(element)
-        }
-        
-        UserDefaults.standard.array(forKey: "netflix")
-        
+        print(UserDefaults.standard.array(forKey: "netflix") as Any)
     }
 
     @IBAction func modalButtonClick(sender _ : Any) {
