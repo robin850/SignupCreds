@@ -15,6 +15,8 @@ class ServicesViewController : UIViewController, BaseController {
     @IBOutlet weak var titre: UILabel!
     @IBOutlet weak var scrollViewContainer: UIScrollView!
     @IBOutlet weak var scrollView: UIView!
+
+    private var cards = Array<CardHighlight>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,12 +76,16 @@ class ServicesViewController : UIViewController, BaseController {
             card.onClick = {
                 let controller = self.tabBarController! as! BarController
                 controller.service = serviceIndex
+
+                self.cards.forEach({ $0.selected = false })
+                card.selected = true
             }
 
             self.scrollView.addSubview(card)
             margeOmbre = margeOmbre + largeur + CGFloat(40)
 
-        })        
+            self.cards.append(card)
+        })
     }
 
     @IBAction func modalButtonClick(sender _ : Any) {

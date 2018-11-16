@@ -51,6 +51,20 @@ import UIKit
         }
     }
 
+    public var selected : Bool = false {
+        didSet {
+            var text : NSAttributedString?
+
+            if (selected) {
+                text = label(text: "✓ Sélectionné", selected: selected)
+            } else {
+                text = label(text: buttonText, selected: selected)
+            }
+
+            actionBtn.setAttributedTitle(text, for: .normal)
+        }
+    }
+
     //Priv Vars
     private var iconIV = UIImageView()
     private var actionBtn = UIButton()
@@ -74,7 +88,7 @@ import UIKit
     override open func initialize() {
         super.initialize()
 
-        actionBtn.addTarget(self, action: #selector(buttonTapped), for: UIControl.Event.touchUpInside)
+        actionBtn.addTarget(self, action: #selector(btnClick), for: UIControl.Event.touchUpInside)
 
         backgroundIV.addSubview(iconIV)
         backgroundIV.addSubview(titleLbl)
@@ -109,10 +123,10 @@ import UIKit
         actionBtn.backgroundColor = UIColor.clear
         actionBtn.layer.backgroundColor = lightColor.cgColor
         actionBtn.clipsToBounds = true
-        let btnTitle = NSAttributedString(string: buttonText.uppercased(), attributes: [ NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16, weight: .black), NSAttributedString.Key.foregroundColor : self.tintColor])
+        let btnTitle = label(text: buttonText, selected: false)
         actionBtn.setAttributedTitle(btnTitle, for: .normal)
 
-        btnWidth = CGFloat((buttonText.count + 2) * 10)
+        btnWidth = CGFloat((buttonText.count + 5) * 10)
 
         layout()
 
@@ -151,16 +165,25 @@ import UIKit
         actionBtn.layer.cornerRadius = actionBtn.layer.bounds.height/2
     }
 
-    //Actions
+    func label(text: String, selected: Bool) -> NSAttributedString? {
+        var color : UIColor!
 
-    @objc  func buttonTapped(){
-        UIView.animate(withDuration: 0.2, animations: {
-            self.actionBtn.transform = CGAffineTransform(scaleX: 0.90, y: 0.90)
-        }) { _ in
-            UIView.animate(withDuration: 0.1, animations: {
-                self.actionBtn.transform = CGAffineTransform.identity
-            })
+        if (selected) {
+            color = UIColor(red: 76/255, green: 175/255, blue: 80/255, alpha: 1)
+        } else {
+            color = self.tintColor
         }
-        delegate?.cardHighlightDidTapButton?(card: self, button: actionBtn)
+
+        return NSAttributedString(
+            string: (text).uppercased(),
+            attributes: [
+                NSAttributedString.Key.font : UIFont.systemFont(ofSize: 16, weight: .black),
+                NSAttributedString.Key.foregroundColor : color
+            ]
+        )
+    }
+
+    @objc func btnClick(sender: UIButton!) {
+        self.onClick()
     }
 }

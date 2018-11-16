@@ -13,7 +13,7 @@ class FormViewController: UIViewController, BaseController {
     
     @IBOutlet weak var alertButton: UIButton!
     @IBOutlet weak var scrollView: UIView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setModalButtonStyle(button: alertButton)
