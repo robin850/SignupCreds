@@ -85,7 +85,7 @@ class FormViewController: UIViewController, BaseController {
         } else {
             self.scrollView.subviews.forEach({$0.removeFromSuperview()})
             /* Génération du formulaire */
-            let textfield = UITextField(frame: CGRect(x: 16, y: 0, width: self.scrollView.frame.width - 32, height: 35))
+            let textfield = UITextField(frame: CGRect(x: 16, y: 0, width: self.scrollView.frame.width, height: 35))
             textfield.placeholder = "Ceci est un TextField"
             textfield.font = UIFont.systemFont(ofSize: 17)
             textfield.borderStyle = UITextField.BorderStyle.roundedRect
@@ -100,7 +100,7 @@ class FormViewController: UIViewController, BaseController {
             
             let items = ["Choix 1", "Choix 2"]
             let segmentedControl = UISegmentedControl(items: items)
-            segmentedControl.frame = CGRect(x: 16, y: y, width: self.scrollView.frame.width - 32, height: 30)
+            segmentedControl.frame = CGRect(x: 16, y: y, width: self.scrollView.frame.width, height: 30)
             segmentedControl.selectedSegmentIndex = 0
             segmentedControl.accessibilityIdentifier = "type"
             self.scrollView.addSubview(segmentedControl)
