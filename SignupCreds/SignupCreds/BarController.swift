@@ -14,7 +14,7 @@ class BarController : UITabBarController {
         didSet {
             let controller = self.viewControllers![1] as! FormViewController
 
-            self.selectedIndex = 0
+            self.selectedIndex = 1
             controller.generateForm(service: self.service!)
         }
     }
