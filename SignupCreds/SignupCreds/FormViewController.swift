@@ -73,7 +73,11 @@ class FormViewController: UIViewController, BaseController {
         let jsonServices = json as! [String : Any]
         let services     = jsonServices["services"] as! Array<[String: Any]>
         
+     //  let dataService = services[service!]
+        
+            
         /* Création d'un label pour indiquer à l'utilisateur de faire un choix de service */
+        
         if(service == -1) {
             let label = UILabel(frame: CGRect(x: 16, y: 0, width: self.scrollView.frame.width, height: 100))
             label.text = "Vous n'avez pas sélectionné de service. Veuillez vous rendre dans l'onglet Services s'il vous plait."
@@ -83,7 +87,58 @@ class FormViewController: UIViewController, BaseController {
             self.scrollView.addSubview(label)
             y += label.frame.height + marginBottom
         } else {
-            self.scrollView.subviews.forEach({$0.removeFromSuperview()})
+            self.scrollView!.subviews.forEach({$0.removeFromSuperview()})
+
+           
+    
+            for title in jsonServices["services"] as! Array<[String: Any]> {
+
+                for element in title["elements"] as! Array<[String : Any]> {
+                    print(element["section"] as! String)
+                    print(element["type"] as! String)
+                    
+                    let values = element["value"] as! Array<String>
+                    for valeur in values {
+                        print(valeur)
+                        
+                        
+                        
+                    }
+                    
+                    if(element["type"] as! String == "edit") {
+                        let textfield = UITextField(frame: CGRect(x: 16, y: y, width: self.scrollView.frame.width - 32, height: 35))
+                        textfield.placeholder = values[0] as String
+                        textfield.font = UIFont.systemFont(ofSize: 17)
+                        textfield.borderStyle = UITextField.BorderStyle.roundedRect
+                        textfield.keyboardType = UIKeyboardType.default
+                        textfield.returnKeyType = UIReturnKeyType.done
+                        textfield.clearButtonMode = UITextField.ViewMode.whileEditing
+                        textfield.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+                        textfield.accessibilityIdentifier = (values[0] as String)
+                        textfield.delegate = self as? UITextFieldDelegate
+                        self.scrollView.addSubview(textfield)
+                        y += textfield.frame.height + marginBottom
+                        
+                    }
+                    else if (element["type"] as! String == "radioGroup") {
+                        let items = values as Array<String>
+                        let segmentedControl = UISegmentedControl(items: items)
+                        segmentedControl.frame = CGRect(x: 16, y: y, width: self.scrollView.frame.width, height: 30)
+                        segmentedControl.selectedSegmentIndex = 0
+                        segmentedControl.accessibilityIdentifier = "type"
+                        self.scrollView.addSubview(segmentedControl)
+                        y += segmentedControl.frame.height + marginBottom
+                    }
+                    else if (element["type"] as! String == "switch"){
+                        let switchOnOff = UISwitch(frame: CGRect(x: 16, y: y, width: self.scrollView.frame.width - 32, height: 30))
+                        switchOnOff.setOn(true, animated: true)
+                        switchOnOff.accessibilityIdentifier = "newsletter"
+                        self.scrollView.addSubview(switchOnOff)
+                        y += switchOnOff.frame.height + marginBottom
+                    }
+                }
+            }
+            /*self.scrollView.subviews.forEach({$0.removeFromSuperview()})
             /* Génération du formulaire */
             let textfield = UITextField(frame: CGRect(x: 16, y: 0, width: self.scrollView.frame.width, height: 35))
             textfield.placeholder = "Ceci est un TextField"
@@ -110,7 +165,7 @@ class FormViewController: UIViewController, BaseController {
             switchOnOff.setOn(true, animated: true)
             segmentedControl.accessibilityIdentifier = "newsletter"
             self.scrollView.addSubview(switchOnOff)
-            y += switchOnOff.frame.height + marginBottom
+            y += switchOnOff.frame.height + marginBottom*/
             
             /* Génération du bouton de validation */
             let button = UIButton(frame: CGRect(x: 16, y: y, width: self.scrollView.frame.width, height: 50))
