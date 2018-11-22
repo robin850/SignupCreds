@@ -143,8 +143,12 @@ class FormViewController: UIViewController, BaseController {
             }
         }
         
-        userArray.append(userDict)
         let controller = self.tabBarController! as! BarController
+        
+        userArray = UserDefaults.standard.array(forKey: serviceName(index: controller.service!)) ?? []
+        userArray.append(userDict)
+        
+        UserDefaults.standard.set(userArray, forKey: serviceName(index: controller.service!))
         controller.selectedIndex = 2
     }
 
