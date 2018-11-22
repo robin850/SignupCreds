@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  FormViewController.swift
 //  SignupCreds
 //
 //  Created by Robin Dupret on 27/09/2018.
@@ -13,7 +13,7 @@ class FormViewController: UIViewController, BaseController {
     
     @IBOutlet weak var alertButton: UIButton!
     @IBOutlet weak var scrollView: UIView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setModalButtonStyle(button: alertButton)
@@ -21,19 +21,19 @@ class FormViewController: UIViewController, BaseController {
         /* Génération dynamique de la vue */
         generateForm(service: -1)
     }
-
+    
     @IBAction func modalButtonClick(sender _ : Any) {
         let controller = displayModalController()
         present(controller, animated: true, completion: nil)
     }
-
+    
     func generateForm(service: Int) {
         /* Position des éléments dans la vue */
         var y : CGFloat = 0
         
         /* Marge à placer pour passer à la catégorie suivante */
         let marginBottom : CGFloat = 20
-            
+        
         /* Création d'un label pour indiquer à l'utilisateur de faire un choix de service */
         
         if(service == -1) {
@@ -46,21 +46,21 @@ class FormViewController: UIViewController, BaseController {
             y += label.frame.height + marginBottom
         } else {
             self.scrollView!.subviews.forEach({$0.removeFromSuperview()})
-
+            
             /* Récupération du fichier JSON */
             let jsonPath = Bundle.main.url(forResource: "service", withExtension: "json")
             let data = try! Data(contentsOf: jsonPath!)
             let json = try! JSONSerialization.jsonObject(with: data, options: [])
             let jsonServices = json as! [String : Any]
             let services     = jsonServices["services"] as! Array<[String: Any]>
-
+            
             let currentService = services[service]
             let elements       = currentService["elements"] as! Array<[String: Any]>
-
+            
             for element in elements {
                 let values = element["value"] as! Array<String>
                 let type   = element["type"] as! String
-
+                
                 if (type == "edit") {
                     y += generateTextField(value: values[0] as String, y: y, marginBottom: marginBottom)
                 } else if (type == "radioGroup") {
@@ -80,19 +80,19 @@ class FormViewController: UIViewController, BaseController {
                     height: 50
                 )
             )
-
+            
             button.setTitle("Enregistrer", for: .normal)
             button.setTitleColor(
                 UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1),
                 for: .normal
             )
-
+            
             button.addTarget(
                 self,
                 action: #selector(FormViewController.buttonAction(_:)),
                 for: .touchUpInside
             )
-
+            
             self.scrollView.addSubview(button)
         }
     }
@@ -114,7 +114,7 @@ class FormViewController: UIViewController, BaseController {
                 userDict.updateValue((txtField.text as! String), forKey: (txtField.accessibilityIdentifier as! String))
             }
         }
-
+        
         if(!(allSegmentedField.isEmpty)) {
             for segmentedField in allSegmentedField
             {
@@ -128,10 +128,10 @@ class FormViewController: UIViewController, BaseController {
                 userDict.updateValue((switchField.isOn), forKey: (switchField.accessibilityIdentifier as! String))
             }
         }
-
+        
         userArray.append(userDict)
     }
-
+    
     func generateTextField(value: String, y: CGFloat, marginBottom: CGFloat) -> CGFloat {
         let textfield = UITextField(
             frame: CGRect(
@@ -140,40 +140,40 @@ class FormViewController: UIViewController, BaseController {
                 height: 35
             )
         )
-
+        
         textfield.placeholder     = value
         textfield.font            = UIFont.systemFont(ofSize: 17)
         textfield.borderStyle     = UITextField.BorderStyle.roundedRect
         textfield.keyboardType    = UIKeyboardType.default
         textfield.returnKeyType   = UIReturnKeyType.done
         textfield.clearButtonMode = UITextField.ViewMode.whileEditing
-
+        
         textfield.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         textfield.accessibilityIdentifier  = value
-
+        
         textfield.delegate = self as? UITextFieldDelegate
-
+        
         self.scrollView.addSubview(textfield)
-
+        
         return textfield.frame.height + marginBottom
     }
-
+    
     func generateRadioGroup(items: [String], y: CGFloat, marginBottom: CGFloat) -> CGFloat {
         let segmentedControl = UISegmentedControl(items: items)
-
+        
         segmentedControl.frame = CGRect(
             x: 16, y: y,
             width: self.scrollView.frame.width,
             height: 30
         )
-
+        
         segmentedControl.selectedSegmentIndex    = 0
         segmentedControl.accessibilityIdentifier = "type"
         self.scrollView.addSubview(segmentedControl)
-
+        
         return segmentedControl.frame.height + marginBottom
     }
-
+    
     func generateSwitch(label: String, y: CGFloat, marginBottom: CGFloat) -> CGFloat {
         let switchOnOff = UISwitch(
             frame: CGRect(
@@ -182,15 +182,15 @@ class FormViewController: UIViewController, BaseController {
                 height: 30
             )
         )
-
+        
         switchOnOff.setOn(true, animated: true)
         switchOnOff.accessibilityIdentifier = label
-
+        
         self.scrollView.addSubview(switchOnOff)
-
+        
         return switchOnOff.frame.height + marginBottom
     }
-
+    
     func generateLabel(label: String, y: CGFloat, marginBottom: CGFloat) -> CGFloat {
         let labelElem = UILabel(
             frame: CGRect(
@@ -199,15 +199,15 @@ class FormViewController: UIViewController, BaseController {
                 height: 30
             )
         )
-
+        
         labelElem.text = label
         labelElem.font = UIFont.systemFont(ofSize: 18)
-
+        
         self.scrollView.addSubview(labelElem)
-
+        
         return labelElem.frame.height + marginBottom
     }
-
+    
     /* Retourne tous les TextField de la vue passée en paramètre */
     func getAllTextFields(view: UIView) -> [UITextField] {
         var results = [UITextField]()
