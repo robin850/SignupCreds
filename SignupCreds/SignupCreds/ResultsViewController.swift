@@ -15,8 +15,10 @@ class ResultsViewController : UIViewController, BaseController {
         super.viewDidLoad()
 
         setModalButtonStyle(button: self.alertButton)
-
-        //UserDefaults.standard.set(userArray, forKey: "netflix")
+        
+        let controller = self.tabBarController! as! BarController
+        
+        UserDefaults.standard.set(userArray, forKey: controller.service)
         //print(UserDefaults.standard.array(forKey: "netflix") as Any)
     }
 

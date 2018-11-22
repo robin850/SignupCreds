@@ -126,7 +126,7 @@ class FormViewController: UIViewController, BaseController {
         }
 
         if (!(textFields.isEmpty)) {
-            for (txtField, mandatory) in textFields {
+            for (txtField, _) in textFields {
                 userDict.updateValue((txtField.text as! String), forKey: (txtField.accessibilityIdentifier as! String))
             }
         }
@@ -144,6 +144,8 @@ class FormViewController: UIViewController, BaseController {
         }
         
         userArray.append(userDict)
+        let controller = self.tabBarController! as! BarController
+        controller.selectedIndex = 2
     }
 
     func generateTextField(value: String, y: CGFloat, marginBottom: CGFloat, mandatory: Bool) -> CGFloat {
@@ -166,7 +168,7 @@ class FormViewController: UIViewController, BaseController {
         textfield.accessibilityIdentifier  = value
         
         textfield.delegate = self as? UITextFieldDelegate
-
+        
         textFields[textfield] = mandatory
 
         self.scrollView.addSubview(textfield)
