@@ -87,4 +87,16 @@ extension BaseController {
         return freeSize.int64Value
     }
 
+    func alert(title: String, message: String) -> UIAlertController {
+        let alertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+
+        let defaultAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertController.addAction(defaultAction)
+
+        return alertController
+    }
 }

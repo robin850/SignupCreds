@@ -9,11 +9,13 @@
 import UIKit
 
 class FormViewController: UIViewController, BaseController {
-    //var service : Int?
-    
     @IBOutlet weak var alertButton: UIButton!
     @IBOutlet weak var scrollView: UIView!
-    
+
+    private var textFields : [UITextField : Bool] = [:]
+    private var switches : [UISwitch] = []
+    private var segments : [UISegmentedControl] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setModalButtonStyle(button: alertButton)
@@ -62,7 +64,7 @@ class FormViewController: UIViewController, BaseController {
                 let type   = element["type"] as! String
                 
                 if (type == "edit") {
-                    y += generateTextField(value: values[0] as String, y: y, marginBottom: marginBottom)
+                    y += generateTextField(value: values[0] as String, y: y, marginBottom: marginBottom, mandatory: (element["mandatory"] as! String == "true"))
                 } else if (type == "radioGroup") {
                     y += generateRadioGroup(items: values, y: y, marginBottom: marginBottom)
                 } else if (type == "switch") {
@@ -103,36 +105,48 @@ class FormViewController: UIViewController, BaseController {
         var userArray = [Any]()
         userDict = [:]
         
-        print("Ca marche")
-        let allTextField = getAllTextFields(view: self.view)
-        let allSegmentedField = getAllSegmentedFields(view: self.view)
-        let allSwitchField = getAllSwitchFields(view: self.view)
-        
-        if(!(allTextField.isEmpty)) {
-            for txtField in allTextField
-            {
+        var errors = Array<String>()
+
+        if (!(textFields.isEmpty)) {
+            for (txtField, mandatory) in textFields {
+                if (mandatory && txtField.text!.isEmpty) {
+                    errors.append(txtField.placeholder!)
+                }
+            }
+        }
+
+        if (!errors.isEmpty) {
+            let message = "Vous devez remplir les champs suivants : \(errors.joined(separator: ", "))"
+
+            self.present(
+                alert(title: "Erreur lors de l'envoi", message: message),
+                animated: true
+            )
+            return
+        }
+
+        if (!(textFields.isEmpty)) {
+            for (txtField, mandatory) in textFields {
                 userDict.updateValue((txtField.text as! String), forKey: (txtField.accessibilityIdentifier as! String))
             }
         }
-        
-        if(!(allSegmentedField.isEmpty)) {
-            for segmentedField in allSegmentedField
-            {
+
+        if (!(segments.isEmpty)) {
+            for segmentedField in segments {
                 userDict.updateValue((segmentedField.titleForSegment(at: segmentedField.selectedSegmentIndex) as! String), forKey: (segmentedField.accessibilityIdentifier as! String))
             }
         }
         
-        if(!(allSwitchField.isEmpty)) {
-            for switchField in allSwitchField
-            {
+        if (!(switches.isEmpty)) {
+            for switchField in switches {
                 userDict.updateValue((switchField.isOn), forKey: (switchField.accessibilityIdentifier as! String))
             }
         }
         
         userArray.append(userDict)
     }
-    
-    func generateTextField(value: String, y: CGFloat, marginBottom: CGFloat) -> CGFloat {
+
+    func generateTextField(value: String, y: CGFloat, marginBottom: CGFloat, mandatory: Bool) -> CGFloat {
         let textfield = UITextField(
             frame: CGRect(
                 x: 16, y: y,
@@ -152,7 +166,9 @@ class FormViewController: UIViewController, BaseController {
         textfield.accessibilityIdentifier  = value
         
         textfield.delegate = self as? UITextFieldDelegate
-        
+
+        textFields[textfield] = mandatory
+
         self.scrollView.addSubview(textfield)
         
         return textfield.frame.height + marginBottom
@@ -169,6 +185,9 @@ class FormViewController: UIViewController, BaseController {
         
         segmentedControl.selectedSegmentIndex    = 0
         segmentedControl.accessibilityIdentifier = "type"
+
+        segments.append(segmentedControl)
+
         self.scrollView.addSubview(segmentedControl)
         
         return segmentedControl.frame.height + marginBottom
@@ -185,7 +204,9 @@ class FormViewController: UIViewController, BaseController {
         
         switchOnOff.setOn(true, animated: true)
         switchOnOff.accessibilityIdentifier = label
-        
+
+        switches.append(switchOnOff)
+
         self.scrollView.addSubview(switchOnOff)
         
         return switchOnOff.frame.height + marginBottom
@@ -207,44 +228,4 @@ class FormViewController: UIViewController, BaseController {
         
         return labelElem.frame.height + marginBottom
     }
-    
-    /* Retourne tous les TextField de la vue passée en paramètre */
-    func getAllTextFields(view: UIView) -> [UITextField] {
-        var results = [UITextField]()
-        for subview in view.subviews as [UIView] {
-            if let textField = subview as? UITextField {
-                results += [textField]
-            } else {
-                results += getAllTextFields(view: subview)
-            }
-        }
-        return results
-    }
-    
-    /* Retourne tous les Switch de la vue passée en paramètre */
-    func getAllSwitchFields(view: UIView) -> [UISwitch] {
-        var results = [UISwitch]()
-        for subview in view.subviews as [UIView] {
-            if let switchField = subview as? UISwitch {
-                results += [switchField]
-            } else {
-                results += getAllSwitchFields(view: subview)
-            }
-        }
-        return results
-    }
-    
-    /* Retourne tous les SegmentedControl de la vue passée en paramètre */
-    func getAllSegmentedFields(view: UIView) -> [UISegmentedControl] {
-        var results = [UISegmentedControl]()
-        for subview in view.subviews as [UIView] {
-            if let segmentedField = subview as? UISegmentedControl {
-                results += [segmentedField]
-            } else {
-                results += getAllSegmentedFields(view: subview)
-            }
-        }
-        return results
-    }
-    
 }
