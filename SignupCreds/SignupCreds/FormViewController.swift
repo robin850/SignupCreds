@@ -48,7 +48,7 @@ class FormViewController: UIViewController, BaseController {
             y += label.frame.height + marginBottom
         } else {
             self.scrollView!.subviews.forEach({$0.removeFromSuperview()})
-            
+
             /* Récupération du fichier JSON */
             let jsonPath = Bundle.main.url(forResource: "service", withExtension: "json")
             let data = try! Data(contentsOf: jsonPath!)

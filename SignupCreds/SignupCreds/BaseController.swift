@@ -99,4 +99,15 @@ extension BaseController {
 
         return alertController
     }
+
+    func serviceName(index: Int) -> String {
+        let jsonPath = Bundle.main.url(forResource: "service", withExtension: "json")
+        let data = try! Data(contentsOf: jsonPath!)
+        let json = try! JSONSerialization.jsonObject(with: data, options: [])
+        let jsonServices = json as! [String : Any]
+        let services     = jsonServices["services"] as! Array<[String: Any]>
+
+
+        return services[index]["title"] as! String
+    }
 }
