@@ -21,6 +21,7 @@
 		00CD7D4F215CCA5D00A966EB /* service.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CD7D4E215CCA5D00A966EB /* service.json */; };
 		00FA8B362199ABBB00C58948 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA8B352199ABBB00C58948 /* BaseController.swift */; };
 		00FA8B382199CB4E00C58948 /* BarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA8B372199CB4E00C58948 /* BarController.swift */; };
+		7E29E7E521A72F680086FA1D /* no-wifi.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E29E7E421A72F680086FA1D /* no-wifi.png */; };
 		7E5A1C26219D6E2C00A249AA /* logo-sc.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5A1C25219D6E2C00A249AA /* logo-sc.png */; };
 		7EE8106521A6C0C30048E313 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE8106421A6C0C30048E313 /* Reachability.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,7 @@
 		00CD7D4E215CCA5D00A966EB /* service.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = service.json; sourceTree = "<group>"; };
 		00FA8B352199ABBB00C58948 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		00FA8B372199CB4E00C58948 /* BarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarController.swift; sourceTree = "<group>"; };
+		7E29E7E421A72F680086FA1D /* no-wifi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no-wifi.png"; sourceTree = "<group>"; };
 		7E5A1C25219D6E2C00A249AA /* logo-sc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-sc.png"; sourceTree = "<group>"; };
 		7EE8106421A6C0C30048E313 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,6 +95,7 @@
 				008415B12199F01400CE9E6D /* LayoutHelper.swift */,
 				7EE8106421A6C0C30048E313 /* Reachability.swift */,
 				7E5A1C25219D6E2C00A249AA /* logo-sc.png */,
+				7E29E7E421A72F680086FA1D /* no-wifi.png */,
 			);
 			path = SignupCreds;
 			sourceTree = "<group>";
@@ -156,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00CD7D3F215CBE9400A966EB /* LaunchScreen.storyboard in Resources */,
+				7E29E7E521A72F680086FA1D /* no-wifi.png in Resources */,
 				00CD7D4F215CCA5D00A966EB /* service.json in Resources */,
 				00CD7D3C215CBE9400A966EB /* Assets.xcassets in Resources */,
 				7E5A1C26219D6E2C00A249AA /* logo-sc.png in Resources */,

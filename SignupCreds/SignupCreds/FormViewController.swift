@@ -66,7 +66,7 @@ class FormViewController: UIViewController, BaseController {
                 if (type == "edit") {
                     y += generateTextField(value: values[0] as String, y: y, marginBottom: marginBottom, mandatory: (element["mandatory"] as! String == "true"))
                 } else if (type == "radioGroup") {
-                    y += generateRadioGroup(items: values, y: y, marginBottom: marginBottom)
+                    y += generateRadioGroup(section: values[0], items: values, y: y, marginBottom: marginBottom)
                 } else if (type == "switch") {
                     y += generateSwitch(label: values[0] as String, y: y, marginBottom: marginBottom)
                 } else if (type == "label") {
@@ -127,19 +127,19 @@ class FormViewController: UIViewController, BaseController {
 
         if (!(textFields.isEmpty)) {
             for (txtField, _) in textFields {
-                userDict.updateValue((txtField.text as! String), forKey: (txtField.accessibilityIdentifier as! String))
+                userDict.updateValue((txtField.text) ?? "", forKey: (txtField.accessibilityIdentifier ?? ""))
             }
         }
 
         if (!(segments.isEmpty)) {
             for segmentedField in segments {
-                userDict.updateValue((segmentedField.titleForSegment(at: segmentedField.selectedSegmentIndex) as! String), forKey: (segmentedField.accessibilityIdentifier as! String))
+                userDict.updateValue((segmentedField.titleForSegment(at: segmentedField.selectedSegmentIndex) ?? ""), forKey: (segmentedField.accessibilityIdentifier ?? ""))
             }
         }
         
         if (!(switches.isEmpty)) {
             for switchField in switches {
-                userDict.updateValue((switchField.isOn), forKey: (switchField.accessibilityIdentifier as! String))
+                userDict.updateValue((switchField.isOn), forKey: (switchField.accessibilityIdentifier ?? ""))
             }
         }
         
@@ -180,7 +180,7 @@ class FormViewController: UIViewController, BaseController {
         return textfield.frame.height + marginBottom
     }
     
-    func generateRadioGroup(items: [String], y: CGFloat, marginBottom: CGFloat) -> CGFloat {
+    func generateRadioGroup(section: String, items: [String], y: CGFloat, marginBottom: CGFloat) -> CGFloat {
         let segmentedControl = UISegmentedControl(items: items)
         
         segmentedControl.frame = CGRect(
@@ -190,7 +190,7 @@ class FormViewController: UIViewController, BaseController {
         )
         
         segmentedControl.selectedSegmentIndex    = 0
-        segmentedControl.accessibilityIdentifier = "type"
+        segmentedControl.accessibilityIdentifier = section
 
         segments.append(segmentedControl)
 
