@@ -13,11 +13,9 @@ class BarController : UITabBarController {
     public var service : Int? {
         didSet {
             let controller = self.viewControllers![1] as! FormViewController
-            let ctrl = self.viewControllers![2] as! ResultsViewController
 
             self.selectedIndex = 1
             controller.generateForm(service: self.service!)
-            ctrl.generateCards(service: self.service!)
         }
     }
 

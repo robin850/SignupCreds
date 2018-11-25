@@ -16,9 +16,14 @@ class ResultsViewController : UIViewController, BaseController {
         super.viewDidLoad()
         
         setModalButtonStyle(button: self.alertButton)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
         let controller = self.tabBarController! as! BarController
-        
-        generateCards(service: -1)
+
+        generateCards(service: controller.service ?? -1)
     }
     
     func generateCards(service : Int) {
