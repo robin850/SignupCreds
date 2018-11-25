@@ -10,7 +10,10 @@ import UIKit
 
 class ResultsViewController : UIViewController, BaseController {
     @IBOutlet weak var alertButton : UIButton!
+    @IBOutlet var masterView: UIView!
     @IBOutlet weak var scrollView: UIView!
+    @IBOutlet weak var heightScrollView: NSLayoutConstraint!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +32,8 @@ class ResultsViewController : UIViewController, BaseController {
     func generateCards(service : Int) {
         
         var y : CGFloat = 0
-        var yLabel : CGFloat = 0
         let marginLabel : CGFloat = 10
-        let marginBottom : CGFloat = 20
+        let separatorHeight : CGFloat = 2
         
         if(service == -1) {
             /* Génération d'un label demandant de choisir un service */
@@ -41,37 +43,55 @@ class ResultsViewController : UIViewController, BaseController {
             label.numberOfLines = 0
             label.font = UIFont.systemFont(ofSize: 17.0)
             self.scrollView.addSubview(label)
-            y += label.frame.height + marginBottom
         } else {
             /* Nettoyage de la vue avant de générer les Cards Users */
             self.scrollView!.subviews.forEach({$0.removeFromSuperview()})
             
             /* Récupération des Users via UserDefaults */
-            let users = UserDefaults.standard.array(forKey: serviceName(index: service))!
-            for i in 0...(users.count - 1) {
-                /* Calcul du nombre de labels à mettre dans la card */
-                let nbEntries : CGFloat = CGFloat((users[i] as AnyObject).count)
-                /* Calcul de la taille de la card en fonction du nombre d'entrées */
-                let heightCard : CGFloat = ((nbEntries * 17) + ((nbEntries - 1) * marginLabel))
-                /* Génération d'une card vide afin d'y ajouter les labels */
-                let card = generateCard(y: y, height: heightCard)
-
-                /* Génération d'un label pour chaque valeur */
-                for (key, value) in users[i] as! NSDictionary {
-                    let label = UILabel(frame: CGRect(x: 16,
-                                                      y: yLabel,
-                                                      width: self.scrollView.frame.width,
-                                                      height: 17))
-                    label.text = value as? String ?? "caca"
-                    label.textColor = UIColor.black
-                    label.numberOfLines = 0
-                    label.font = UIFont.systemFont(ofSize: 17.0)
-                    
-                    yLabel += label.frame.height + marginLabel
-                    card.addSubview(label)
+            if(UserDefaults.standard.array(forKey: serviceName(index: service)) != nil) {
+                let users = UserDefaults.standard.array(forKey: serviceName(index: service))!
+                for i in 0...(users.count - 1) {
+                    /* Génération d'un label pour chaque valeur */
+                    for (key, value) in users[i] as! NSDictionary {
+                        let label = UILabel(frame: CGRect(x: 16,
+                                                          y: y,
+                                                          width: self.scrollView.frame.width,
+                                                          height: 17))
+                        label.text = ((key as? String ?? "") + " : " + (value as? String ?? ""))
+                        label.textColor = UIColor.black
+                        label.numberOfLines = 0
+                        label.font = UIFont.systemFont(ofSize: 17.0)
+                        
+                        y += label.frame.height + marginLabel
+                        self.scrollView.addSubview(label)
+                    }
+                    generateSeparator(y: y, separatorHeight: separatorHeight)
+                    y += separatorHeight + marginLabel
                 }
-                self.scrollView.addSubview(card)
-                y += 135
+                /* Calcul du nombre de labels par User */
+                let nbEntries : CGFloat = CGFloat((users[0] as AnyObject).count)
+                /* Calcul de la taille d'un User en fonction du nombre d'entrées */
+                let heightUser : CGFloat = ((nbEntries * (17 + marginLabel)) + separatorHeight)
+                /* Calcul de la taille de la vue scrollable en fonction du nombre d'Users */
+                let nbUsers = users.count
+                let heightView : CGFloat = CGFloat(nbUsers) * heightUser
+                print(heightView)
+                var extraHeight : CGFloat
+                if(heightScrollView.constant < heightView) {
+                    extraHeight = heightView - heightScrollView.constant
+                    heightScrollView.constant += extraHeight
+                    self.scrollView.layoutIfNeeded()
+                } else {
+                    extraHeight = heightScrollView.constant - heightView
+                    heightScrollView.constant += extraHeight
+                }
+            } else {
+                let label = UILabel(frame: CGRect(x: 16, y: 0, width: self.scrollView.frame.width, height: 100))
+                label.text = "Il n'existe aucun membre pour ce service. Ajoutez en un dès maintenant dans l'onglet Formulaire"
+                label.textColor = UIColor.black
+                label.numberOfLines = 0
+                label.font = UIFont.systemFont(ofSize: 17.0)
+                self.scrollView.addSubview(label)
             }
         }
     }
@@ -97,5 +117,11 @@ class ResultsViewController : UIViewController, BaseController {
         card.layer.shouldRasterize = true
         
         return card
+    }
+    
+    func generateSeparator(y: CGFloat, separatorHeight: CGFloat) {
+        let separator = UIView(frame: CGRect(x: 0, y: y, width: self.scrollView.frame.width, height: separatorHeight))
+        separator.backgroundColor = UIColor.black
+        self.scrollView.addSubview(separator)
     }
 }

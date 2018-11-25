@@ -344,6 +344,8 @@ Robin Dupret</string>
                     <size key="freeformSize" width="375" height="1000"/>
                     <connections>
                         <outlet property="alertButton" destination="NFU-pY-srt" id="oyw-sr-KbA"/>
+                        <outlet property="heightScrollView" destination="Cvs-K7-l9Z" id="DgY-i3-frQ"/>
+                        <outlet property="masterView" destination="n2r-P7-e2U" id="BLQ-7T-hVg"/>
                         <outlet property="scrollView" destination="Qlu-28-PIh" id="UhN-xw-9O9"/>
                     </connections>
                 </viewController>
