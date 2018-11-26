@@ -56,9 +56,7 @@ class ServicesViewController : UIViewController, BaseController {
             height: self.scrollView.frame.height + nouvelleHauteur + 139
         )
 
-        forEachService(closure: { (title, imageData, serviceIndex) in
-            let image = UIImage(data: imageData as Data)
-
+        forEachService(closure: { (title, serviceIndex) in
             let card = CardHighlight(frame: CGRect(x: 16, y: margeOmbre, width: largeur , height: largeur - 64))
 
             card.backgroundColor = UIColor(
@@ -68,7 +66,6 @@ class ServicesViewController : UIViewController, BaseController {
                 alpha: 1
             )
 
-            card.icon       = image
             card.title      = title
             card.textColor  = UIColor.white
             card.buttonText = "Sélectionner"
@@ -85,6 +82,8 @@ class ServicesViewController : UIViewController, BaseController {
             margeOmbre = margeOmbre + largeur + CGFloat(40)
 
             self.cards.append(card)
+
+            return card
         })
     }
 
@@ -94,7 +93,7 @@ class ServicesViewController : UIViewController, BaseController {
     }
 
     /* Permet de parcourir tous les éléments */
-    func forEachService(closure: @escaping (_ title : String, _ image: NSData, _ index : Int) -> Void) {
+    func forEachService(closure: @escaping (_ title : String, _ index : Int) -> CardHighlight) {
         let jsonPath = Bundle.main.url(forResource: "service", withExtension: "json")
 
         do {
@@ -116,13 +115,18 @@ class ServicesViewController : UIViewController, BaseController {
                             let imageUrlString = valeur
                             let imageUrl:URL = URL(string: imageUrlString)!
 
-                            DispatchQueue.global(qos: .userInitiated).async {
-                                let imageData:NSData = NSData(contentsOf: imageUrl)!
+                            let card = closure(service["title"] as! String, indice)
+
+                            URLSession.shared.dataTask(with: imageUrl, completionHandler: { (data, response, error) in
                                 DispatchQueue.main.async {
-                                    closure(service["title"] as! String, imageData, indice)
-                                    indice = indice + 1
+                                    print(indice)
+                                    let image = UIImage(data: data!)
+                                    card.icon = image
                                 }
-                            }
+                            }).resume()
+
+                            indice = indice + 1
+
                         }
                     }
                 }
