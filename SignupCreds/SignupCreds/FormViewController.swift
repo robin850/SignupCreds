@@ -71,7 +71,7 @@ class FormViewController: UIViewController, BaseController {
                 if (type == "edit") {
                     y += generateTextField(value: values[0] as String, y: y, marginBottom: marginBottom, mandatory: (element["mandatory"] as! String == "true"))
                 } else if (type == "radioGroup") {
-                    y += generateRadioGroup(section: values[0], items: values, y: y, marginBottom: marginBottom)
+                    y += generateRadioGroup(section: element["section"] as! String, items: values, y: y, marginBottom: marginBottom)
                 } else if (type == "switch") {
                     y += generateSwitch(label: values[0] as String, y: y, marginBottom: marginBottom)
                 } else if (type == "label") {
