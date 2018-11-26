@@ -19,7 +19,7 @@ class FormViewController: UIViewController, BaseController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setModalButtonStyle(button: alertButton)
-        
+
         /* Génération dynamique de la vue */
         generateForm(service: -1)
     }
@@ -37,7 +37,7 @@ class FormViewController: UIViewController, BaseController {
         let marginBottom : CGFloat = 20
         
         /* Création d'un label pour indiquer à l'utilisateur de faire un choix de service */
-        
+
         if(service == -1) {
             let label = UILabel(frame: CGRect(x: 16, y: 0, width: self.scrollView.frame.width, height: 100))
             label.text = "Vous n'avez pas sélectionné de service. Veuillez vous rendre dans l'onglet Services s'il vous plait."
@@ -48,6 +48,11 @@ class FormViewController: UIViewController, BaseController {
             y += label.frame.height + marginBottom
         } else {
             self.scrollView!.subviews.forEach({$0.removeFromSuperview()})
+
+            /* Clear les éléments précédents */
+            textFields = [:]
+            switches = []
+            segments = []
 
             /* Récupération du fichier JSON */
             let jsonPath = Bundle.main.url(forResource: "service", withExtension: "json")
