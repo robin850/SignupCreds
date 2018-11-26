@@ -103,9 +103,10 @@ class ServicesViewController : UIViewController, BaseController {
             let jsonServices = json as! [String : Any]
 
             var indice = 0
+            let services = jsonServices["services"] as! Array<[String: Any]>
 
-            for title in jsonServices["services"] as! Array<[String: Any]> {
-                for element in title["elements"] as! Array<[String : Any]> {
+            for service in services {
+                for element in service["elements"] as! Array<[String : Any]> {
                     let section = element["section"] as! String
 
                     if (section == "title") {
@@ -118,7 +119,7 @@ class ServicesViewController : UIViewController, BaseController {
                             DispatchQueue.global(qos: .userInitiated).async {
                                 let imageData:NSData = NSData(contentsOf: imageUrl)!
                                 DispatchQueue.main.async {
-                                    closure(title["title"] as! String, imageData, indice)
+                                    closure(service["title"] as! String, imageData, indice)
                                     indice = indice + 1
                                 }
                             }
