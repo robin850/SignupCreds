@@ -10,7 +10,6 @@ import UIKit
 
 class ResultsViewController : UIViewController, BaseController {
     @IBOutlet weak var alertButton : UIButton!
-    @IBOutlet weak var heightScrollView: NSLayoutConstraint!
 
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
