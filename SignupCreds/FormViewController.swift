@@ -14,6 +14,7 @@ class FormViewController: BaseController {
     private var textFields : [UITextField : Bool] = [:]
     private var switches : [UISwitch] = []
     private var segments : [UISegmentedControl] = []
+    private var buttons : [String : [UISegmentedControl]] = [:]
 
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
@@ -70,7 +71,30 @@ class FormViewController: BaseController {
             /* Récupération du fichier JSON */
             let currentService = self.services[service]
             let elements       = currentService["elements"] as! Array<[String: Any]>
-            
+
+            /*
+             * Regroupement des boutons ensemble avant de générer le groupe
+             * de boutons.
+             */
+            var buttons     = [String: [String]]()
+            let buttonElems = elements.filter() {
+                return ($0["type"] as! String) == "button"
+            }
+
+            for button in buttonElems {
+                let name  = button["section"] as! String
+                let value = (button["value"] as! [String])[0] as String
+
+                if (buttons[name] == nil) {
+                    buttons[name] = [String]()
+                }
+
+                buttons[name]!.append(value)
+            }
+
+            /*
+             * Génération des éléments du formulaire
+             */
             for element in elements {
                 let values = element["value"] as! Array<String>
                 let type   = element["type"] as! String
@@ -83,6 +107,16 @@ class FormViewController: BaseController {
                     y += generateSwitch(label: values[0] as String, y: y, marginBottom: marginBottom)
                 } else if (type == "label") {
                     y += generateLabel(label: values[0] as String, y: y, marginBottom: marginBottom)
+                } else if (type == "button") {
+                    let section = element["section"] as! String
+                    let elems   = buttons[section]
+
+                    if (elems != nil) {
+                        y += generateButtons(label: section, elems: elems!, y: y, marginBottom: marginBottom)
+
+                        // Pour éviter de générer autant de fois qu'il n'y a de boutons
+                        buttons[section] = nil
+                    }
                 }
             }
             
@@ -154,12 +188,24 @@ class FormViewController: BaseController {
                 userDict.updateValue((switchField.isOn), forKey: (switchField.accessibilityIdentifier ?? ""))
             }
         }
+
+        if (!(buttons.isEmpty)) {
+            for (section, controls) in buttons {
+                let values = controls.filter() {
+                    return $0.selectedSegmentIndex != -1
+                }.map() { control in
+                    control.titleForSegment(at: control.selectedSegmentIndex)!
+                }.joined(separator: ", ")
+
+                userDict.updateValue(values, forKey: section)
+            }
+        }
         
         let controller = self.tabBarController! as! BarController
-        
+
         userArray = UserDefaults.standard.array(forKey: serviceName(index: controller.service!)) ?? []
         userArray.append(userDict)
-        
+
         UserDefaults.standard.set(userArray, forKey: serviceName(index: controller.service!))
         controller.selectedIndex = 2
     }
@@ -245,5 +291,40 @@ class FormViewController: BaseController {
         self.scrollView.addSubview(labelElem)
         
         return labelElem.frame.height + marginBottom
+    }
+
+    func generateButtons(label: String, elems: [String], y: CGFloat, marginBottom: CGFloat) -> CGFloat {
+        var x = CGFloat(16)
+        var margin = marginBottom
+        let width  = (self.view.frame.width - CGFloat(16)
+                                            - CGFloat(elems.count * 16))
+                        / CGFloat(elems.count)
+
+        var controls = [UISegmentedControl]()
+
+        for (index, element) in elems.enumerated() {
+            let segmentedControl = UISegmentedControl(items: [element])
+
+            segmentedControl.frame = CGRect(
+                x: x, y: y,
+                width: width,
+                height: 30
+            )
+
+            controls.append(segmentedControl)
+            self.scrollView.addSubview(segmentedControl)
+
+            // On incrémente la marge en hauteur une seule fois puisque
+            // les éléments sont tous affichés sur la même ligne.
+            if (index == 0) {
+                margin += segmentedControl.frame.height
+            }
+
+            x += width + 16
+        }
+
+        self.buttons[label] = controls
+
+        return margin
     }
 }
