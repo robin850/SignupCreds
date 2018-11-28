@@ -303,7 +303,7 @@ class FormViewController: BaseController {
         var controls = [UISegmentedControl]()
 
         for (index, element) in elems.enumerated() {
-            let segmentedControl = UISegmentedControl(items: [element])
+            let segmentedControl = ButtonSegment(items: [element])
 
             segmentedControl.frame = CGRect(
                 x: x, y: y,

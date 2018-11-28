@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		003B4F3C21AF250500072449 /* ButtonSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003B4F3B21AF250500072449 /* ButtonSegment.swift */; };
 		008415AC2199EF9800CE9E6D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008415AB2199EF9800CE9E6D /* Card.swift */; };
 		008415AE2199EFDD00CE9E6D /* CardHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008415AD2199EFDD00CE9E6D /* CardHighlight.swift */; };
 		008415B22199F01400CE9E6D /* LayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008415B12199F01400CE9E6D /* LayoutHelper.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		003B4F3B21AF250500072449 /* ButtonSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSegment.swift; sourceTree = "<group>"; };
 		008415AB2199EF9800CE9E6D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		008415AD2199EFDD00CE9E6D /* CardHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardHighlight.swift; sourceTree = "<group>"; };
 		008415B12199F01400CE9E6D /* LayoutHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutHelper.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				7EE8106421A6C0C30048E313 /* Reachability.swift */,
 				7E5A1C25219D6E2C00A249AA /* logo-sc.png */,
 				7E29E7E421A72F680086FA1D /* no-wifi.png */,
+				003B4F3B21AF250500072449 /* ButtonSegment.swift */,
 			);
 			path = SignupCreds;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 				00FA8B362199ABBB00C58948 /* BaseController.swift in Sources */,
 				7EE8106521A6C0C30048E313 /* Reachability.swift in Sources */,
 				00FA8B382199CB4E00C58948 /* BarController.swift in Sources */,
+				003B4F3C21AF250500072449 /* ButtonSegment.swift in Sources */,
 				00CD7D49215CC12400A966EB /* AboutViewController.swift in Sources */,
 				008415AC2199EF9800CE9E6D /* Card.swift in Sources */,
 			);
