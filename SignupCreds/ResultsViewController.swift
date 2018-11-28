@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ResultsViewController : UIViewController, BaseController {
+class ResultsViewController : BaseController {
     @IBOutlet weak var alertButton : UIButton!
 
     lazy var scrollView: UIScrollView = {

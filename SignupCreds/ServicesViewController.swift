@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ServicesViewController : UIViewController, BaseController {
+class ServicesViewController : BaseController {
     
     @IBOutlet weak var alertButton: UIButton!
     @IBOutlet weak var titre: UILabel!
@@ -80,45 +80,32 @@ class ServicesViewController : UIViewController, BaseController {
 
     /* Permet de parcourir tous les éléments */
     func forEachService(closure: @escaping (_ title : String, _ index : Int) -> CardHighlight) {
-        let jsonPath = Bundle.main.url(forResource: "service", withExtension: "json")
+        var indice = 0
 
-        do {
-            let data = try Data(contentsOf: jsonPath!)
-            let json = try JSONSerialization.jsonObject(with: data, options: [])
-            let jsonServices = json as! [String : Any]
+        for service in services {
+            for element in service["elements"] as! Array<[String : Any]> {
+                let section = element["section"] as! String
 
-            var indice = 0
-            let services = jsonServices["services"] as! Array<[String: Any]>
+                if (section == "title") {
+                    let values = element["value"] as! Array<String>
 
-            for service in services {
-                for element in service["elements"] as! Array<[String : Any]> {
-                    let section = element["section"] as! String
+                    for valeur in values {
+                        let imageUrlString = valeur
+                        let imageUrl:URL = URL(string: imageUrlString)!
 
-                    if (section == "title") {
-                        let values = element["value"] as! Array<String>
-                        for valeur in values {
+                        let card = closure(service["title"] as! String, indice)
 
-                            let imageUrlString = valeur
-                            let imageUrl:URL = URL(string: imageUrlString)!
+                        URLSession.shared.dataTask(with: imageUrl, completionHandler: { (data, response, error) in
+                            DispatchQueue.main.async {
+                                let image = UIImage(data: data!)
+                                card.icon = image
+                            }
+                        }).resume()
 
-                            let card = closure(service["title"] as! String, indice)
-
-                            URLSession.shared.dataTask(with: imageUrl, completionHandler: { (data, response, error) in
-                                DispatchQueue.main.async {
-                                    print(indice)
-                                    let image = UIImage(data: data!)
-                                    card.icon = image
-                                }
-                            }).resume()
-
-                            indice = indice + 1
-
-                        }
+                        indice = indice + 1
                     }
                 }
             }
-        } catch {
-            print(error)
         }
     }
 }

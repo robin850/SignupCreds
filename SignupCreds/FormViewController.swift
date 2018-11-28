@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FormViewController: UIViewController, BaseController {
+class FormViewController: BaseController {
     @IBOutlet weak var alertButton: UIButton!
 
     private var textFields : [UITextField : Bool] = [:]
@@ -68,13 +68,7 @@ class FormViewController: UIViewController, BaseController {
             segments = []
 
             /* Récupération du fichier JSON */
-            let jsonPath = Bundle.main.url(forResource: "service", withExtension: "json")
-            let data = try! Data(contentsOf: jsonPath!)
-            let json = try! JSONSerialization.jsonObject(with: data, options: [])
-            let jsonServices = json as! [String : Any]
-            let services     = jsonServices["services"] as! Array<[String: Any]>
-            
-            let currentService = services[service]
+            let currentService = self.services[service]
             let elements       = currentService["elements"] as! Array<[String: Any]>
             
             for element in elements {

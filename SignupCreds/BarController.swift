@@ -19,6 +19,8 @@ class BarController : UITabBarController {
         }
     }
 
+    public var services : Array<[String:Any]> = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,6 +31,14 @@ class BarController : UITabBarController {
         let right = UISwipeGestureRecognizer(target: self, action: #selector(swipeRight))
         right.direction = .right
         self.view.addGestureRecognizer(right)
+
+        // Chargement des services
+        let jsonPath = Bundle.main.url(forResource: "service", withExtension: "json")
+        let data = try! Data(contentsOf: jsonPath!)
+        let json = try! JSONSerialization.jsonObject(with: data, options: [])
+        let jsonServices = json as! [String : Any]
+
+        self.services = jsonServices["services"] as! Array<[String: Any]>
     }
     
     @objc func swipeLeft() {

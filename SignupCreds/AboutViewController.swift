@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AboutViewController : UIViewController, BaseController {
+class AboutViewController : BaseController {
     
     @IBOutlet weak var alertButton: UIButton!
     

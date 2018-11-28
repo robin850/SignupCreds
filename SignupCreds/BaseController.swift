@@ -8,13 +8,15 @@
 
 import UIKit
 
-protocol BaseController {
-}
-
-extension BaseController {
+class BaseController : UIViewController {
+    var services : Array<[String: Any]> {
+        get {
+            return (self.tabBarController! as! BarController).services
+        }
+    }
     func displayModalController() -> UIAlertController {
         var info = mach_task_basic_info()
-        
+
         var count = mach_msg_type_number_t(MemoryLayout<mach_task_basic_info>.size)/4
         let kerr: kern_return_t = withUnsafeMutablePointer(to: &info) {
             $0.withMemoryRebound(to: integer_t.self, capacity: 1) {
@@ -24,10 +26,10 @@ extension BaseController {
                           &count)
             }
         }
-        
+
         /* Création de la chaine de caractères pour le popup */
         var x = ""
-        
+
         /* Calcul de la RAM utilisée */
         if kerr == KERN_SUCCESS {
             x = ("Mémoire RAM utilisée : \(info.resident_size / UInt64(exactly: 1e6)!) MB")
@@ -36,29 +38,29 @@ extension BaseController {
             x = "Erreur task_info(): " +
                 (String(cString: mach_error_string(kerr), encoding: String.Encoding.ascii) ?? "unknown error")
         }
-        
+
         /* Calcul de la mémoire ROM restante */
         if let usedRom = deviceRemainingFreeSpaceInBytes() {
             x += "\n\nMémoire ROM disponible : \(usedRom / Int64(exactly: 1e9)!) GB"
         } else {
             x += "\n\nMémoire ROM disponible : Erreur !"
         }
-        
+
         /* Calcul de la mémoire RAM totale */
         if let totalMemory = deviceSpaceInBytes() {
             x += "\nMémoire ROM totale : \(totalMemory / Int64(exactly: 1e9)!) GB"
         } else {
             x += "\nMémoire ROM totale : Erreur !"
         }
-        
+
         /* Création du popup */
         let alertController = UIAlertController(title: "Infos Système", message: x, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alertController.addAction(defaultAction)
-        
+
         return alertController
     }
-    
+
     func setModalButtonStyle(button : UIButton) {
         let appleBlue = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
         button.backgroundColor = .clear
@@ -66,7 +68,7 @@ extension BaseController {
         button.layer.borderWidth = 1
         button.layer.borderColor = appleBlue.cgColor
     }
-    
+
     /* Calcul de la mémoire ROM utilisée */
     func deviceRemainingFreeSpaceInBytes() -> Int64? {
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last!
@@ -76,7 +78,7 @@ extension BaseController {
             else {return nil}
         return freeSize.int64Value
     }
-    
+
     /* Calcul de la mémoire ROM totale */
     func deviceSpaceInBytes() -> Int64? {
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last!
@@ -101,13 +103,6 @@ extension BaseController {
     }
 
     func serviceName(index: Int) -> String {
-        let jsonPath = Bundle.main.url(forResource: "service", withExtension: "json")
-        let data = try! Data(contentsOf: jsonPath!)
-        let json = try! JSONSerialization.jsonObject(with: data, options: [])
-        let jsonServices = json as! [String : Any]
-        let services     = jsonServices["services"] as! Array<[String: Any]>
-
-
         return services[index]["title"] as! String
     }
 }
