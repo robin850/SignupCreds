@@ -10,13 +10,23 @@ import UIKit
 
 class ResultsViewController : UIViewController, BaseController {
     @IBOutlet weak var alertButton : UIButton!
-    @IBOutlet var masterView: UIView!
-    @IBOutlet weak var scrollView: UIView!
     @IBOutlet weak var heightScrollView: NSLayoutConstraint!
-    
+
+    lazy var scrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentSize.height = 2000
+
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(scrollView)
+        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 139.0).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         
         setModalButtonStyle(button: self.alertButton)
     }
@@ -37,7 +47,7 @@ class ResultsViewController : UIViewController, BaseController {
         
         if(service == -1) {
             /* Génération d'un label demandant de choisir un service */
-            let label = UILabel(frame: CGRect(x: 16, y: 0, width: self.scrollView.frame.width, height: 100))
+            let label = UILabel(frame: CGRect(x: 16, y: 0, width: self.view.frame.width - 32, height: 100))
             label.text = "Vous n'avez pas sélectionné de service. Veuillez vous rendre dans l'onglet Services s'il vous plait."
             label.textColor = UIColor.black
             label.numberOfLines = 0
@@ -45,7 +55,7 @@ class ResultsViewController : UIViewController, BaseController {
             self.scrollView.addSubview(label)
         } else {
             /* Nettoyage de la vue avant de générer les Cards Users */
-            self.scrollView!.subviews.forEach({$0.removeFromSuperview()})
+            self.scrollView.subviews.forEach({$0.removeFromSuperview()})
             
             /* Récupération des Users via UserDefaults */
             if(UserDefaults.standard.array(forKey: serviceName(index: service)) != nil) {
@@ -55,7 +65,7 @@ class ResultsViewController : UIViewController, BaseController {
                     for (key, value) in users[i] as! NSDictionary {
                         let label = UILabel(frame: CGRect(x: 16,
                                                           y: y,
-                                                          width: self.scrollView.frame.width,
+                                                          width: self.view.frame.width - 32,
                                                           height: 17))
                         label.text = ((key as? String ?? "") + " : " + (value as? String ?? ""))
                         label.textColor = UIColor.black
@@ -76,17 +86,17 @@ class ResultsViewController : UIViewController, BaseController {
                 let nbUsers = users.count
                 let heightView : CGFloat = CGFloat(nbUsers) * heightUser
                 print(heightView)
-                var extraHeight : CGFloat
-                if(heightScrollView.constant < heightView) {
-                    extraHeight = heightView - heightScrollView.constant
-                    heightScrollView.constant += extraHeight
-                    self.scrollView.layoutIfNeeded()
-                } else {
-                    extraHeight = heightScrollView.constant - heightView
-                    heightScrollView.constant += extraHeight
-                }
+//                var extraHeight : CGFloat
+//                if(heightScrollView.constant < heightView) {
+//                    extraHeight = heightView - heightScrollView.constant
+//                    heightScrollView.constant += extraHeight
+//                    self.scrollView.layoutIfNeeded()
+//                } else {
+//                    extraHeight = heightScrollView.constant - heightView
+//                    heightScrollView.constant += extraHeight
+//                }
             } else {
-                let label = UILabel(frame: CGRect(x: 16, y: 0, width: self.scrollView.frame.width, height: 100))
+                let label = UILabel(frame: CGRect(x: 16, y: 0, width: self.view.frame.width - 32, height: 100))
                 label.text = "Il n'existe aucun membre pour ce service. Ajoutez en un dès maintenant dans l'onglet Formulaire"
                 label.textColor = UIColor.black
                 label.numberOfLines = 0
@@ -120,7 +130,7 @@ class ResultsViewController : UIViewController, BaseController {
     }
     
     func generateSeparator(y: CGFloat, separatorHeight: CGFloat) {
-        let separator = UIView(frame: CGRect(x: 0, y: y, width: self.scrollView.frame.width, height: separatorHeight))
+        let separator = UIView(frame: CGRect(x: 0, y: y, width: self.view.frame.width - 32, height: separatorHeight))
         separator.backgroundColor = UIColor.black
         self.scrollView.addSubview(separator)
     }

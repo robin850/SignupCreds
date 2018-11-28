@@ -11,19 +11,29 @@ import UIKit
 class ServicesViewController : UIViewController, BaseController {
     
     @IBOutlet weak var alertButton: UIButton!
-    
     @IBOutlet weak var titre: UILabel!
-    @IBOutlet weak var scrollViewContainer: UIScrollView!
-    @IBOutlet weak var scrollView: UIView!
+
+    lazy var scrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentSize.height = 2000
+
+        return view
+    }()
 
     private var cards = Array<CardHighlight>()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(scrollView)
+        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 139.0).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
 
         setModalButtonStyle(button: alertButton)
 
-        /* Marge poour qu'on voit la première ombre en entier */
+        /* Marge pour qu'on voit la première ombre en entier */
         var margeOmbre = CGFloat(25)
 
         /* Taille de la boite */
@@ -31,30 +41,6 @@ class ServicesViewController : UIViewController, BaseController {
 
         /* Hauteur globale de la scrollView */
         let hauteurGlobale = CGFloat(margeOmbre + 2 * largeur + 100)
-
-        /* Hauteur totale ; hauteur de la scrollview + la nouvelle calculée */
-        let nouvelleHauteur = CGFloat(self.scrollView.frame.height + hauteurGlobale)
-
-        self.scrollViewContainer.frame = CGRect(
-            x: 0,
-            y: 139,
-            width: self.scrollViewContainer.frame.width,
-            height: self.scrollViewContainer.frame.height + nouvelleHauteur
-        )
-
-        self.scrollView.frame = CGRect(
-            x: 0,
-            y: 139,
-            width: self.scrollView.frame.width,
-            height: self.scrollView.frame.height + nouvelleHauteur
-        )
-
-        self.view.frame = CGRect(
-            x: 0,
-            y: 0,
-            width: self.scrollView.frame.width,
-            height: self.scrollView.frame.height + nouvelleHauteur + 139
-        )
 
         forEachService(closure: { (title, serviceIndex) in
             let card = CardHighlight(frame: CGRect(x: 16, y: margeOmbre, width: largeur , height: largeur - 64))
@@ -79,7 +65,7 @@ class ServicesViewController : UIViewController, BaseController {
             }
 
             self.scrollView.addSubview(card)
-            margeOmbre = margeOmbre + largeur + CGFloat(40)
+            margeOmbre = (margeOmbre * 2) + largeur
 
             self.cards.append(card)
 

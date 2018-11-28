@@ -10,14 +10,27 @@ import UIKit
 
 class FormViewController: UIViewController, BaseController {
     @IBOutlet weak var alertButton: UIButton!
-    @IBOutlet weak var scrollView: UIView!
 
     private var textFields : [UITextField : Bool] = [:]
     private var switches : [UISwitch] = []
     private var segments : [UISegmentedControl] = []
 
+    lazy var scrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentSize.height = 2000
+
+        return view
+    }()
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(scrollView)
+        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 139.0).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         setModalButtonStyle(button: alertButton)
 
         /* Génération dynamique de la vue */
@@ -39,7 +52,7 @@ class FormViewController: UIViewController, BaseController {
         /* Création d'un label pour indiquer à l'utilisateur de faire un choix de service */
 
         if(service == -1) {
-            let label = UILabel(frame: CGRect(x: 16, y: 0, width: self.scrollView.frame.width, height: 100))
+            let label = UILabel(frame: CGRect(x: 16, y: 0, width: self.view.frame.width - 32, height: 100))
             label.text = "Vous n'avez pas sélectionné de service. Veuillez vous rendre dans l'onglet Services s'il vous plait."
             label.textColor = UIColor.black
             label.numberOfLines = 0
@@ -47,7 +60,7 @@ class FormViewController: UIViewController, BaseController {
             self.scrollView.addSubview(label)
             y += label.frame.height + marginBottom
         } else {
-            self.scrollView!.subviews.forEach({$0.removeFromSuperview()})
+            self.scrollView.subviews.forEach({$0.removeFromSuperview()})
 
             /* Clear les éléments précédents */
             textFields = [:]
@@ -83,7 +96,7 @@ class FormViewController: UIViewController, BaseController {
             let button = UIButton(frame:
                 CGRect(
                     x: 16, y: y,
-                    width: self.scrollView.frame.width,
+                    width: self.view.frame.width,
                     height: 50
                 )
             )
@@ -161,7 +174,7 @@ class FormViewController: UIViewController, BaseController {
         let textfield = UITextField(
             frame: CGRect(
                 x: 16, y: y,
-                width: self.scrollView.frame.width - 32,
+                width: self.view.frame.width - 32,
                 height: 35
             )
         )
@@ -190,7 +203,7 @@ class FormViewController: UIViewController, BaseController {
         
         segmentedControl.frame = CGRect(
             x: 16, y: y,
-            width: self.scrollView.frame.width,
+            width: self.view.frame.width - 32,
             height: 30
         )
         
@@ -208,7 +221,7 @@ class FormViewController: UIViewController, BaseController {
         let switchOnOff = UISwitch(
             frame: CGRect(
                 x: 16, y: y,
-                width: self.scrollView.frame.width - 32,
+                width: self.view.frame.width - 32,
                 height: 30
             )
         )
@@ -227,7 +240,7 @@ class FormViewController: UIViewController, BaseController {
         let labelElem = UILabel(
             frame: CGRect(
                 x: 16, y: y,
-                width: self.scrollView.frame.width - 32,
+                width: self.view.frame.width - 32,
                 height: 30
             )
         )
