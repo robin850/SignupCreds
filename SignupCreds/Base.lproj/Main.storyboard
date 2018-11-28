@@ -276,7 +276,6 @@ Robin Dupret</string>
                     <tabBarItem key="tabBarItem" title="Membres" image="second" id="Z0T-Fr-a5X"/>
                     <connections>
                         <outlet property="alertButton" destination="NFU-pY-srt" id="oyw-sr-KbA"/>
-                        <outlet property="masterView" destination="n2r-P7-e2U" id="BLQ-7T-hVg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xjd-iS-GBo" sceneMemberID="firstResponder"/>
