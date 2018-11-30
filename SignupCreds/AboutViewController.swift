@@ -9,9 +9,6 @@
 import UIKit
 
 class AboutViewController : BaseController {
-
-    @IBOutlet weak var alertButton: UIButton!
-    
     var label = UILabel()
     var button = UIButton()
     

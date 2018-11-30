@@ -9,8 +9,6 @@
 import UIKit
 
 class ResultsViewController : BaseController {
-    @IBOutlet weak var alertButton : UIButton!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
