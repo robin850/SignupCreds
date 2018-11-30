@@ -203,6 +203,9 @@ class FormViewController: BaseController {
         userArray = UserDefaults.standard.array(forKey: serviceName(index: controller.service)) ?? []
         userArray.append(userDict)
 
+        // On nettoie le formulaire une fois toutes les valeurs extraites
+        clearForm()
+
         UserDefaults.standard.set(userArray, forKey: serviceName(index: controller.service))
         controller.selectedIndex = 2
     }
@@ -324,5 +327,21 @@ class FormViewController: BaseController {
         self.buttons[label] = controls
 
         return margin
+    }
+
+    func clearForm() {
+        for (field, _) in textFields {
+            field.text = ""
+        }
+
+        for segment in segments {
+            segment.selectedSegmentIndex = 0
+        }
+
+        for (_, btns) in buttons {
+            btns.forEach() { btn in
+                btn.selectedSegmentIndex = -1
+            }
+        }
     }
 }
