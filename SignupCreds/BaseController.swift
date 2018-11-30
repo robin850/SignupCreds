@@ -34,6 +34,12 @@ class BaseController : UIViewController {
         )
     }
 
+    /// Permet d'afficher une boîte de dialogue modale avec les
+    /// différentes informations systèmes:
+    ///
+    ///   - Utilisation de la RAM
+    ///   - Utilisation de la mémoire ROM
+    ///   - Utilisation du CPU
     @objc func displayModal(_ sender: UIButton!) {
         var info = mach_task_basic_info()
 
@@ -118,7 +124,7 @@ class BaseController : UIViewController {
         self.present(alertController, animated: true)
     }
 
-    /* Calcul de la mémoire ROM utilisée */
+    /// Permet de calculer de la mémoire ROM utilisée
     func deviceRemainingFreeSpaceInBytes() -> Int64? {
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last!
         guard
@@ -128,7 +134,7 @@ class BaseController : UIViewController {
         return freeSize.int64Value
     }
 
-    /* Calcul de la mémoire ROM totale */
+    /// Permet de calculer la mémoire ROM totale.
     func deviceSpaceInBytes() -> Int64? {
         let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last!
         guard
@@ -151,10 +157,19 @@ class BaseController : UIViewController {
         return alertController
     }
 
+    /// Permet de récupérer le nom du service sous forme de chaîne de
+    /// caractères à partir de l'index (basé sur le fichier JSON).
+    ///
+    /// - Parameter index: Index du service.
     func serviceName(index: Int) -> String {
         return services[index]["title"] as! String
     }
 
+    /// Permet de définir le texte du label représentant le titre
+    /// de la vue et de correctement mettre en place le style
+    /// associé.
+    ///
+    /// - Parameter title: Titre de la vue.
     func setTitle(title: String) {
         controllerTitle.text = title
 
@@ -168,6 +183,8 @@ class BaseController : UIViewController {
         self.view.addSubview(controllerTitle)
     }
 
+    /// Permet de créer le bouton permettant d'afficher la popup
+    /// indiquant les différentes métriques utilisée (RAM, ROM, CPU).
     func createButton() {
         let appleBlue = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
 
