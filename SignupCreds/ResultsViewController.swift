@@ -51,6 +51,7 @@ class ResultsViewController : BaseController {
             label.textColor = UIColor.black
             label.numberOfLines = 0
             label.font = UIFont.systemFont(ofSize: 17.0)
+            label.sizeToFit()
             self.scrollView.addSubview(label)
         } else {
             /* Nettoyage de la vue avant de générer les Cards Users */
@@ -65,14 +66,14 @@ class ResultsViewController : BaseController {
                         let label = UILabel(frame: CGRect(x: 16,
                                                           y: y,
                                                           width: self.view.frame.width - 32,
-                                                          height: 17))
+                                                          height: 100))
                         label.text = ((key as? String ?? "") + " : " + (value as? String ?? ""))
                         label.textColor = UIColor.black
                         label.numberOfLines = 0
                         label.font = UIFont.systemFont(ofSize: 17.0)
-                        
-                        y += label.frame.height + marginLabel
+                        label.sizeToFit()
                         self.scrollView.addSubview(label)
+                        y += label.frame.height + marginLabel
                     }
                     generateSeparator(y: y, separatorHeight: separatorHeight)
                     y += separatorHeight + marginLabel
@@ -100,6 +101,7 @@ class ResultsViewController : BaseController {
                 label.textColor = UIColor.black
                 label.numberOfLines = 0
                 label.font = UIFont.systemFont(ofSize: 17.0)
+                label.sizeToFit()
                 self.scrollView.addSubview(label)
             }
         }

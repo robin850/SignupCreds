@@ -16,7 +16,7 @@ class ServicesViewController : BaseController {
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentSize.height = 2000
+        view.contentSize.height = 50
 
         return view
     }()
@@ -30,7 +30,7 @@ class ServicesViewController : BaseController {
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-
+        
         setModalButtonStyle(button: alertButton)
 
         /* Marge pour qu'on voit la première ombre en entier */
@@ -38,9 +38,6 @@ class ServicesViewController : BaseController {
 
         /* Taille de la boite */
         let largeur = CGFloat(self.view.frame.width - 32)
-
-        /* Hauteur globale de la scrollView */
-        let hauteurGlobale = CGFloat(margeOmbre + 2 * largeur + 100)
 
         forEachService(closure: { (title, serviceIndex) in
             let card = CardHighlight(frame: CGRect(x: 16, y: margeOmbre, width: largeur , height: largeur - 64))
@@ -65,12 +62,15 @@ class ServicesViewController : BaseController {
             }
 
             self.scrollView.addSubview(card)
-            margeOmbre = (margeOmbre * 2) + largeur
+            margeOmbre += largeur
 
             self.cards.append(card)
 
             return card
         })
+        
+        scrollView.contentSize.height = CGFloat(cards.count) * (largeur - 64) + CGFloat(cards.count - 1) * margeOmbre
+        scrollView.layoutIfNeeded()
     }
 
     @IBAction func modalButtonClick(sender _ : Any) {

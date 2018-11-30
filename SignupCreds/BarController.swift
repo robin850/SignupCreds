@@ -10,12 +10,14 @@ import Foundation
 import UIKit
 
 class BarController : UITabBarController {
-    public var service : Int? {
+    public var service : Int = -1 {
         didSet {
             let controller = self.viewControllers![1] as! FormViewController
-
+            let controller2 = self.viewControllers![3] as! AboutViewController
+            
             self.selectedIndex = 1
-            controller.generateForm(service: self.service!)
+            controller.generateForm(service: self.service)
+            controller2.generateButton()
         }
     }
 

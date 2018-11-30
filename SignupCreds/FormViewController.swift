@@ -58,6 +58,7 @@ class FormViewController: BaseController {
             label.textColor = UIColor.black
             label.numberOfLines = 0
             label.font = UIFont.systemFont(ofSize: 17.0)
+            label.sizeToFit()
             self.scrollView.addSubview(label)
             y += label.frame.height + marginBottom
         } else {
@@ -203,10 +204,10 @@ class FormViewController: BaseController {
         
         let controller = self.tabBarController! as! BarController
 
-        userArray = UserDefaults.standard.array(forKey: serviceName(index: controller.service!)) ?? []
+        userArray = UserDefaults.standard.array(forKey: serviceName(index: controller.service)) ?? []
         userArray.append(userDict)
 
-        UserDefaults.standard.set(userArray, forKey: serviceName(index: controller.service!))
+        UserDefaults.standard.set(userArray, forKey: serviceName(index: controller.service))
         controller.selectedIndex = 2
     }
 
@@ -287,6 +288,7 @@ class FormViewController: BaseController {
         
         labelElem.text = label
         labelElem.font = UIFont.systemFont(ofSize: 18)
+        labelElem.sizeToFit()
         
         self.scrollView.addSubview(labelElem)
         
