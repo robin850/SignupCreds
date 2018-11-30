@@ -10,28 +10,15 @@ import UIKit
 
 class ResultsViewController : BaseController {
     @IBOutlet weak var alertButton : UIButton!
-
-    lazy var scrollView: UIScrollView = {
-        let view = UIScrollView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentSize.height = 2000
-
-        return view
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(scrollView)
-        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 139.0).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        
-        setModalButtonStyle(button: self.alertButton)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        setTitle(title: "Nos membres")
 
         let controller = self.tabBarController! as! BarController
 
@@ -53,6 +40,13 @@ class ResultsViewController : BaseController {
             label.font = UIFont.systemFont(ofSize: 17.0)
             label.sizeToFit()
             self.scrollView.addSubview(label)
+
+            scrollView.contentSize = CGSize(
+                width: self.view.frame.width,
+                height: label.frame.height
+            )
+
+            self.view.addSubview(scrollView)
         } else {
             /* Nettoyage de la vue avant de générer les Cards Users */
             self.scrollView.subviews.forEach({$0.removeFromSuperview()})
@@ -78,23 +72,13 @@ class ResultsViewController : BaseController {
                     generateSeparator(y: y, separatorHeight: separatorHeight)
                     y += separatorHeight + marginLabel
                 }
-                /* Calcul du nombre de labels par User */
-                let nbEntries : CGFloat = CGFloat((users[0] as AnyObject).count)
-                /* Calcul de la taille d'un User en fonction du nombre d'entrées */
-                let heightUser : CGFloat = ((nbEntries * (17 + marginLabel)) + separatorHeight)
-                /* Calcul de la taille de la vue scrollable en fonction du nombre d'Users */
-                let nbUsers = users.count
-                let heightView : CGFloat = CGFloat(nbUsers) * heightUser
-                print(heightView)
-//                var extraHeight : CGFloat
-//                if(heightScrollView.constant < heightView) {
-//                    extraHeight = heightView - heightScrollView.constant
-//                    heightScrollView.constant += extraHeight
-//                    self.scrollView.layoutIfNeeded()
-//                } else {
-//                    extraHeight = heightScrollView.constant - heightView
-//                    heightScrollView.constant += extraHeight
-//                }
+
+                scrollView.contentSize = CGSize(
+                    width: self.view.frame.width,
+                    height: y
+                )
+
+                self.view.addSubview(scrollView)
             } else {
                 let label = UILabel(frame: CGRect(x: 16, y: 0, width: self.view.frame.width - 32, height: 100))
                 label.text = "Il n'existe aucun membre pour ce service. Ajoutez en un dès maintenant dans l'onglet Formulaire"
@@ -102,14 +86,11 @@ class ResultsViewController : BaseController {
                 label.numberOfLines = 0
                 label.font = UIFont.systemFont(ofSize: 17.0)
                 label.sizeToFit()
+
                 self.scrollView.addSubview(label)
+                self.view.addSubview(scrollView)
             }
         }
-    }
-    
-    @IBAction func modalButtonClick(sender _ : Any) {
-        let controller = displayModalController()
-        present(controller, animated: true, completion: nil)
     }
     
     func generateSeparator(y: CGFloat, separatorHeight: CGFloat) {

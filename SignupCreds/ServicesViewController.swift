@@ -9,35 +9,26 @@
 import UIKit
 
 class ServicesViewController : BaseController {
-    
-    @IBOutlet weak var alertButton: UIButton!
-    @IBOutlet weak var titre: UILabel!
-
-    lazy var scrollView: UIScrollView = {
-        let view = UIScrollView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-
-        return view
-    }()
 
     private var cards = Array<CardHighlight>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(scrollView)
-        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 139.0).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        scrollView.heightAnchor.constraint(equalToConstant: 200.0).isActive = true
-        
-        setModalButtonStyle(button: alertButton)
 
         /* Marge pour qu'on voit la première ombre en entier */
-        var margeOmbre = CGFloat(25)
+        var margeOmbre = CGFloat(20)
 
         /* Taille de la boite */
         let largeur = CGFloat(self.view.frame.width - 32)
+
+        let height = CGFloat(services.count) * (largeur - 64)
+                        + (CGFloat(services.count - 1) * margeOmbre)
+                        + barHeight
+
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: height - 20)
+        self.view.addSubview(scrollView)
+
+        setTitle(title: "Services")
 
         forEachService(closure: { (title, serviceIndex) in
             let card = CardHighlight(frame: CGRect(x: 16, y: margeOmbre, width: largeur , height: largeur - 64))
@@ -68,15 +59,6 @@ class ServicesViewController : BaseController {
 
             return card
         })
-        
-        let mabite : CGFloat = CGFloat(cards.count) * (largeur - 64) + CGFloat(cards.count) * margeOmbre
-        scrollView.heightAnchor.constraint(equalToConstant: mabite).isActive = true
-        scrollView.layoutIfNeeded()
-    }
-
-    @IBAction func modalButtonClick(sender _ : Any) {
-        let controller = displayModalController()
-        present(controller, animated: true, completion: nil)
     }
 
     /* Permet de parcourir tous les éléments */

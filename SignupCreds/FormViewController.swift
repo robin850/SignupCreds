@@ -9,38 +9,19 @@
 import UIKit
 
 class FormViewController: BaseController {
-    @IBOutlet weak var alertButton: UIButton!
-
     private var textFields : [UITextField : Bool] = [:]
     private var switches : [UISwitch] = []
     private var segments : [UISegmentedControl] = []
     private var buttons : [String : [UISegmentedControl]] = [:]
 
-    lazy var scrollView: UIScrollView = {
-        let view = UIScrollView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentSize.height = 2000
-
-        return view
-    }()
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(scrollView)
-        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 139.0).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        setModalButtonStyle(button: alertButton)
+
+        setTitle(title: "Formulaire")
 
         /* Génération dynamique de la vue */
         generateForm(service: -1)
-    }
-    
-    @IBAction func modalButtonClick(sender _ : Any) {
-        let controller = displayModalController()
-        present(controller, animated: true, completion: nil)
     }
     
     func generateForm(service: Int) {
@@ -52,15 +33,24 @@ class FormViewController: BaseController {
         
         /* Création d'un label pour indiquer à l'utilisateur de faire un choix de service */
 
-        if(service == -1) {
+        if (service == -1) {
             let label = UILabel(frame: CGRect(x: 16, y: 0, width: self.view.frame.width - 32, height: 100))
             label.text = "Vous n'avez pas sélectionné de service. Veuillez vous rendre dans l'onglet Services s'il vous plait."
             label.textColor = UIColor.black
             label.numberOfLines = 0
             label.font = UIFont.systemFont(ofSize: 17.0)
             label.sizeToFit()
-            self.scrollView.addSubview(label)
+
             y += label.frame.height + marginBottom
+
+            scrollView.contentSize = CGSize(
+                width: self.view.frame.width,
+                height: y - barHeight
+            )
+
+            self.view.addSubview(scrollView)
+            self.scrollView.addSubview(label)
+
         } else {
             self.scrollView.subviews.forEach({$0.removeFromSuperview()})
 
@@ -141,8 +131,14 @@ class FormViewController: BaseController {
                 action: #selector(FormViewController.buttonAction(_:)),
                 for: .touchUpInside
             )
-            
+
+            scrollView.contentSize = CGSize(
+                width: self.view.frame.width,
+                height: y + button.frame.height
+            )
+
             self.scrollView.addSubview(button)
+            self.view.addSubview(scrollView)
         }
     }
     

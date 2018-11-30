@@ -12,14 +12,6 @@ class AboutViewController : BaseController {
 
     @IBOutlet weak var alertButton: UIButton!
     
-    lazy var scrollView: UIScrollView = {
-        let view = UIScrollView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentSize.height = 2000
-        
-        return view
-    }()
-    
     var label = UILabel()
     var button = UIButton()
     
@@ -27,14 +19,10 @@ class AboutViewController : BaseController {
         super.viewDidLoad()
         
         view.addSubview(scrollView)
-        scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 139.0).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        
-        setModalButtonStyle(button: alertButton)
+
+        setTitle(title: "À propos")
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -93,10 +81,5 @@ class AboutViewController : BaseController {
         let ratio : CGFloat = CGFloat(480) / (self.view.frame.width - 32)
         imageView.frame = CGRect(x: 16.0, y: button.frame.minY + button.frame.height + 20, width: 480 / ratio, height: 352 / ratio)
         scrollView.addSubview(imageView)
-    }
-
-    @IBAction func modalButtonClick(sender _ : Any) {
-        let controller = displayModalController()
-        present(controller, animated: true, completion: nil)
     }
 }

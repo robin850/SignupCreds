@@ -9,12 +9,32 @@
 import UIKit
 
 class BaseController : UIViewController {
+    var controllerTitle : UILabel = UILabel()
+    var scrollView : UIScrollView = UIScrollView()
+    var modalButton : UIButton = UIButton()
+
+    let barHeight : CGFloat! = CGFloat(129)
+
     var services : Array<[String: Any]> {
         get {
             return (self.tabBarController! as! BarController).services
         }
     }
-    func displayModalController() -> UIAlertController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        createButton()
+
+        scrollView.frame = CGRect(
+            x: 0, y: barHeight,
+            width: self.view.frame.width,
+            height: self.view.frame.height
+                - (self.tabBarController?.tabBar.frame.height)!
+                - barHeight
+        )
+    }
+
+    @objc func displayModal(_ sender: UIButton!) {
         var info = mach_task_basic_info()
 
         var count = mach_msg_type_number_t(MemoryLayout<mach_task_basic_info>.size)/4
@@ -95,15 +115,7 @@ class BaseController : UIViewController {
         let defaultAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alertController.addAction(defaultAction)
 
-        return alertController
-    }
-
-    func setModalButtonStyle(button : UIButton) {
-        let appleBlue = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
-        button.backgroundColor = .clear
-        button.layer.cornerRadius = 15
-        button.layer.borderWidth = 1
-        button.layer.borderColor = appleBlue.cgColor
+        self.present(alertController, animated: true)
     }
 
     /* Calcul de la mémoire ROM utilisée */
@@ -141,5 +153,44 @@ class BaseController : UIViewController {
 
     func serviceName(index: Int) -> String {
         return services[index]["title"] as! String
+    }
+
+    func setTitle(title: String) {
+        controllerTitle.text = title
+
+        controllerTitle.font = UIFont.boldSystemFont(ofSize: 30)
+        controllerTitle.frame = CGRect(
+            x: 16, y: 70,
+            width: self.view.frame.width,
+            height: 40
+        )
+
+        self.view.addSubview(controllerTitle)
+    }
+
+    func createButton() {
+        let appleBlue = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
+
+        modalButton.setTitle("?", for: .normal)
+        modalButton.setTitleColor(appleBlue, for: .normal)
+
+        modalButton.backgroundColor = .clear
+        modalButton.layer.cornerRadius = 15
+        modalButton.layer.borderWidth = 1
+        modalButton.layer.borderColor = appleBlue.cgColor
+
+        modalButton.frame = CGRect(
+            x: self.view.frame.width - 50, y: 70,
+            width: 30,
+            height: 30
+        )
+
+        modalButton.addTarget(
+            self,
+            action: #selector(self.displayModal(_:)),
+            for: .touchUpInside
+        )
+
+        self.view.addSubview(modalButton)
     }
 }
