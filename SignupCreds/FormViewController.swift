@@ -114,7 +114,7 @@ class FormViewController: BaseController {
             /* Génération du bouton de validation */
             let button = UIButton(frame:
                 CGRect(
-                    x: 16, y: y,
+                    x: 0, y: y,
                     width: self.view.frame.width,
                     height: 50
                 )
