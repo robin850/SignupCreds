@@ -95,7 +95,7 @@ class FormViewController: BaseController {
                 } else if (type == "radioGroup") {
                     y += generateRadioGroup(section: element["section"] as! String, items: values, y: y, marginBottom: marginBottom)
                 } else if (type == "switch") {
-                    y += generateSwitch(label: values[0] as String, y: y, marginBottom: marginBottom)
+                    y += generateSwitch(label: element["section"] as! String, y: y, marginBottom: marginBottom)
                 } else if (type == "label") {
                     y += generateLabel(label: values[0] as String, y: y, marginBottom: marginBottom)
                 } else if (type == "button") {
@@ -182,7 +182,7 @@ class FormViewController: BaseController {
         
         if (!(switches.isEmpty)) {
             for switchField in switches {
-                userDict.updateValue((switchField.isOn), forKey: (switchField.accessibilityIdentifier ?? ""))
+                userDict.updateValue((switchField.isOn ? "Oui" : "Non"), forKey: (switchField.accessibilityIdentifier ?? ""))
             }
         }
 
@@ -262,7 +262,7 @@ class FormViewController: BaseController {
                 height: 30
             )
         )
-        
+
         switchOnOff.setOn(true, animated: true)
         switchOnOff.accessibilityIdentifier = label
 
