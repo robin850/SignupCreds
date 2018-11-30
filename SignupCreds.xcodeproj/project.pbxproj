@@ -22,7 +22,8 @@
 		00CD7D4F215CCA5D00A966EB /* service.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CD7D4E215CCA5D00A966EB /* service.json */; };
 		00FA8B362199ABBB00C58948 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA8B352199ABBB00C58948 /* BaseController.swift */; };
 		00FA8B382199CB4E00C58948 /* BarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA8B372199CB4E00C58948 /* BarController.swift */; };
-		7E29E7E521A72F680086FA1D /* no-wifi.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E29E7E421A72F680086FA1D /* no-wifi.png */; };
+		7E36E8FA21B1307000A9404B /* readGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E36E8F921B1307000A9404B /* readGif.swift */; };
+		7E36E8FC21B1323D00A9404B /* soundsright.gif in Resources */ = {isa = PBXBuildFile; fileRef = 7E36E8FB21B1323D00A9404B /* soundsright.gif */; };
 		7E5A1C26219D6E2C00A249AA /* logo-sc.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E5A1C25219D6E2C00A249AA /* logo-sc.png */; };
 		7EE8106521A6C0C30048E313 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE8106421A6C0C30048E313 /* Reachability.swift */; };
 /* End PBXBuildFile section */
@@ -45,7 +46,8 @@
 		00CD7D4E215CCA5D00A966EB /* service.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = service.json; sourceTree = "<group>"; };
 		00FA8B352199ABBB00C58948 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		00FA8B372199CB4E00C58948 /* BarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarController.swift; sourceTree = "<group>"; };
-		7E29E7E421A72F680086FA1D /* no-wifi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no-wifi.png"; sourceTree = "<group>"; };
+		7E36E8F921B1307000A9404B /* readGif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = readGif.swift; sourceTree = "<group>"; };
+		7E36E8FB21B1323D00A9404B /* soundsright.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = soundsright.gif; sourceTree = "<group>"; };
 		7E5A1C25219D6E2C00A249AA /* logo-sc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-sc.png"; sourceTree = "<group>"; };
 		7EE8106421A6C0C30048E313 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,6 +90,7 @@
 				00CD7D34215CBE9200A966EB /* FormViewController.swift */,
 				00CD7D36215CBE9200A966EB /* ResultsViewController.swift */,
 				00CD7D48215CC12400A966EB /* AboutViewController.swift */,
+				7E36E8F921B1307000A9404B /* readGif.swift */,
 				00CD7D3B215CBE9400A966EB /* Assets.xcassets */,
 				00CD7D40215CBE9400A966EB /* Info.plist */,
 				00FA8B372199CB4E00C58948 /* BarController.swift */,
@@ -97,8 +100,8 @@
 				008415B12199F01400CE9E6D /* LayoutHelper.swift */,
 				7EE8106421A6C0C30048E313 /* Reachability.swift */,
 				7E5A1C25219D6E2C00A249AA /* logo-sc.png */,
-				7E29E7E421A72F680086FA1D /* no-wifi.png */,
 				003B4F3B21AF250500072449 /* ButtonSegment.swift */,
+				7E36E8FB21B1323D00A9404B /* soundsright.gif */,
 			);
 			path = SignupCreds;
 			sourceTree = "<group>";
@@ -162,10 +165,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				00CD7D3F215CBE9400A966EB /* LaunchScreen.storyboard in Resources */,
-				7E29E7E521A72F680086FA1D /* no-wifi.png in Resources */,
 				00CD7D4F215CCA5D00A966EB /* service.json in Resources */,
 				00CD7D3C215CBE9400A966EB /* Assets.xcassets in Resources */,
 				7E5A1C26219D6E2C00A249AA /* logo-sc.png in Resources */,
+				7E36E8FC21B1323D00A9404B /* soundsright.gif in Resources */,
 				00CD7D3A215CBE9200A966EB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -182,6 +185,7 @@
 				008415AE2199EFDD00CE9E6D /* CardHighlight.swift in Sources */,
 				00CD7D33215CBE9200A966EB /* AppDelegate.swift in Sources */,
 				00CD7D4B215CC17100A966EB /* ServicesViewController.swift in Sources */,
+				7E36E8FA21B1307000A9404B /* readGif.swift in Sources */,
 				00CD7D35215CBE9200A966EB /* FormViewController.swift in Sources */,
 				00FA8B362199ABBB00C58948 /* BaseController.swift in Sources */,
 				7EE8106521A6C0C30048E313 /* Reachability.swift in Sources */,

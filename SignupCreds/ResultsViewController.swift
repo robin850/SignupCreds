@@ -112,27 +112,9 @@ class ResultsViewController : BaseController {
         present(controller, animated: true, completion: nil)
     }
     
-    /* Génération d'une card pour afficher un User */
-    func generateCard(y: CGFloat, height: CGFloat) -> UIView {
-        let card = UIView(frame: CGRect(x: 16,
-                                        y: y,
-                                        width: self.view.frame.width - 32,
-                                        height: height))
-        card.backgroundColor = UIColor.white
-        card.layer.cornerRadius = 10.0
-        card.layer.shadowColor = UIColor.black.cgColor
-        card.layer.shadowOpacity = 0.1
-        card.layer.shadowRadius = 7.0
-        card.layer.shadowOffset = .zero
-        card.layer.shadowPath = UIBezierPath(rect: card.bounds).cgPath
-        card.layer.shouldRasterize = true
-        
-        return card
-    }
-    
     func generateSeparator(y: CGFloat, separatorHeight: CGFloat) {
-        let separator = UIView(frame: CGRect(x: 0, y: y, width: self.view.frame.width - 32, height: separatorHeight))
-        separator.backgroundColor = UIColor.black
+        let separator = UIView(frame: CGRect(x: 16, y: y, width: self.view.frame.width - 32, height: separatorHeight))
+        separator.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         self.scrollView.addSubview(separator)
     }
 }

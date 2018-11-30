@@ -9,7 +9,7 @@
 import UIKit
 
 class AboutViewController : BaseController {
-    
+
     @IBOutlet weak var alertButton: UIButton!
     
     lazy var scrollView: UIScrollView = {
@@ -25,6 +25,7 @@ class AboutViewController : BaseController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.addSubview(scrollView)
         scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 139.0).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -32,14 +33,20 @@ class AboutViewController : BaseController {
         scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         
         setModalButtonStyle(button: alertButton)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.scrollView.subviews.forEach({$0.removeFromSuperview()})
         
         label.frame = CGRect(
-                        x: 16, y: 0,
-                        width: self.view.frame.width - 32,
-                        height: 100
-                      )
+            x: 16, y: 0,
+            width: self.view.frame.width - 32,
+            height: 100
+        )
         
-        label.text = "Cette application a été développée dans le cadre du module Compilation et Développement d'Applications Mobiles par :\n\nSamuel Bazniar\nThomas Delhaye\nRobin Dupret\n"
+        label.text = "Cette application a été développée dans le cadre du module Compilation et Développement d'Applications Mobiles par :\n\nSamuel Bazniar\nThomas Delhaye\nRobin Dupret"
         label.font = UIFont.systemFont(ofSize: 17)
         label.numberOfLines = 0
         label.sizeToFit()
@@ -47,13 +54,12 @@ class AboutViewController : BaseController {
         self.scrollView.addSubview(label)
         
         generateButton()
-        
     }
     
     func generateButton() {
         let controller = self.tabBarController! as! BarController
         button.frame = CGRect(
-                        x: 16, y: label.frame.height + 20,
+                        x: 16, y: label.frame.minY + label.frame.height + 20,
                         width: self.view.frame.width - 32,
                         height: 50
                        )
@@ -81,6 +87,12 @@ class AboutViewController : BaseController {
     {
         let controller = self.tabBarController! as! BarController
         UserDefaults.standard.removeObject(forKey: serviceName(index: controller.service))
+        
+        let name = UIImage.gifImageWithName("soundsright")
+        let imageView = UIImageView(image: name)
+        let ratio : CGFloat = CGFloat(480) / (self.view.frame.width - 32)
+        imageView.frame = CGRect(x: 16.0, y: button.frame.minY + button.frame.height + 20, width: 480 / ratio, height: 352 / ratio)
+        scrollView.addSubview(imageView)
     }
 
     @IBAction func modalButtonClick(sender _ : Any) {

@@ -16,7 +16,6 @@ class ServicesViewController : BaseController {
     lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentSize.height = 50
 
         return view
     }()
@@ -30,6 +29,7 @@ class ServicesViewController : BaseController {
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        scrollView.heightAnchor.constraint(equalToConstant: 200.0).isActive = true
         
         setModalButtonStyle(button: alertButton)
 
@@ -69,7 +69,8 @@ class ServicesViewController : BaseController {
             return card
         })
         
-        scrollView.contentSize.height = CGFloat(cards.count) * (largeur - 64) + CGFloat(cards.count - 1) * margeOmbre
+        let mabite : CGFloat = CGFloat(cards.count) * (largeur - 64) + CGFloat(cards.count) * margeOmbre
+        scrollView.heightAnchor.constraint(equalToConstant: mabite).isActive = true
         scrollView.layoutIfNeeded()
     }
 
