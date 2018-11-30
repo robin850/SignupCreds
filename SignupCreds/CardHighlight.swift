@@ -53,15 +53,7 @@ import UIKit
 
     public var selected : Bool = false {
         didSet {
-            var text : NSAttributedString?
-
-            if (selected) {
-                text = label(text: "✓ Sélectionné", selected: selected)
-            } else {
-                text = label(text: buttonText, selected: selected)
-            }
-
-            actionBtn.setAttributedTitle(text, for: .normal)
+            actionBtn.setAttributedTitle(label(), for: .normal)
         }
     }
 
@@ -123,8 +115,7 @@ import UIKit
         actionBtn.backgroundColor = UIColor.clear
         actionBtn.layer.backgroundColor = lightColor.cgColor
         actionBtn.clipsToBounds = true
-        let btnTitle = label(text: buttonText, selected: false)
-        actionBtn.setAttributedTitle(btnTitle, for: .normal)
+        actionBtn.setAttributedTitle(label(), for: .normal)
 
         btnWidth = CGFloat((buttonText.count + 5) * 10)
 
@@ -165,12 +156,15 @@ import UIKit
         actionBtn.layer.cornerRadius = actionBtn.layer.bounds.height/2
     }
 
-    func label(text: String, selected: Bool) -> NSAttributedString? {
+    func label() -> NSAttributedString? {
         var color : UIColor!
+        var text : String
 
         if (selected) {
+            text  = "✓ Sélectionné"
             color = UIColor(red: 76/255, green: 175/255, blue: 80/255, alpha: 1)
         } else {
+            text = buttonText
             color = self.tintColor
         }
 
