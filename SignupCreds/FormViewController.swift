@@ -14,6 +14,7 @@ class FormViewController: BaseController {
     private var segments : [UISegmentedControl] = []
     private var buttons : [String : [UISegmentedControl]] = [:]
 
+    private let marginBottom : CGFloat! = CGFloat(20)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,13 +24,21 @@ class FormViewController: BaseController {
         /* Génération dynamique de la vue */
         generateForm(service: -1)
     }
-    
+
+    /// Permet de générer le formulaire.
+    ///
+    /// Les éléments du fichier JSON placés dans la section du service
+    /// actuellement sélectionné sont lus un à un et transformés sous
+    /// forme d'éléments natifs pour représenter le formulaire.
+    ///
+    /// Lorsque le service spécifié est `-1`, le formulaire n'est pas
+    /// généré et un message indique à l'utilisateur qu'il doit en
+    /// choisir un.
+    ///
+    /// - Parameter service : Le service associé au formulaire.
     func generateForm(service: Int) {
         /* Position des éléments dans la vue */
         var y : CGFloat = 0
-        
-        /* Marge à placer pour passer à la catégorie suivante */
-        let marginBottom : CGFloat = 20
         
         /* Création d'un label pour indiquer à l'utilisateur de faire un choix de service */
 
@@ -91,19 +100,33 @@ class FormViewController: BaseController {
                 let type   = element["type"] as! String
                 
                 if (type == "edit") {
-                    y += generateTextField(value: values[0] as String, y: y, marginBottom: marginBottom, mandatory: (element["mandatory"] as! String == "true"))
+                    y += generateTextField(
+                        value: values[0] as String,
+                        y: y,
+                        mandatory: (element["mandatory"] as! String == "true")
+                    )
                 } else if (type == "radioGroup") {
-                    y += generateRadioGroup(section: element["section"] as! String, items: values, y: y, marginBottom: marginBottom)
+                    y += generateRadioGroup(
+                        section: element["section"] as! String,
+                        items: values,
+                        y: y
+                    )
                 } else if (type == "switch") {
-                    y += generateSwitch(label: element["section"] as! String, y: y, marginBottom: marginBottom)
+                    y += generateSwitch(
+                        label: element["section"] as! String,
+                        y: y
+                    )
                 } else if (type == "label") {
-                    y += generateLabel(label: values[0] as String, y: y, marginBottom: marginBottom)
+                    y += generateLabel(
+                        label: values[0] as String,
+                        y: y
+                    )
                 } else if (type == "button") {
                     let section = element["section"] as! String
                     let elems   = buttons[section]
 
                     if (elems != nil) {
-                        y += generateButtons(label: section, elems: elems!, y: y, marginBottom: marginBottom)
+                        y += generateButtons(label: section, elems: elems!, y: y)
 
                         // Pour éviter de générer autant de fois qu'il n'y a de boutons
                         buttons[section] = nil
@@ -141,7 +164,9 @@ class FormViewController: BaseController {
             self.view.addSubview(scrollView)
         }
     }
-    
+
+    /// Gestionnaire d'évènement appelé lors du clique sur le bouton
+    /// d'envoie du formulaire.
     @objc func buttonAction(_ sender:UIButton!)
     {
         var userDict = [String:Any]()
@@ -210,7 +235,14 @@ class FormViewController: BaseController {
         controller.selectedIndex = 2
     }
 
-    func generateTextField(value: String, y: CGFloat, marginBottom: CGFloat, mandatory: Bool) -> CGFloat {
+    /// Permet de générer un champ texte dans le formulaire et retourne
+    /// la hauteur de l'élément généré avec sa marge.
+    ///
+    /// - Parameters:
+    ///   - value: Nom du champ (placeholder).
+    ///   - y: La position courante en hauteur.
+    ///   - mandatory: Spécifie si le champ est requis ou non.
+    func generateTextField(value: String, y: CGFloat, mandatory: Bool) -> CGFloat {
         let textfield = UITextField(
             frame: CGRect(
                 x: 16, y: y,
@@ -237,8 +269,15 @@ class FormViewController: BaseController {
         
         return textfield.frame.height + marginBottom
     }
-    
-    func generateRadioGroup(section: String, items: [String], y: CGFloat, marginBottom: CGFloat) -> CGFloat {
+
+    /// Permet de générer un groupe de boutons radio et retourne la hauteur
+    /// de l'élément généré avec sa marge.
+    ///
+    /// - Parameters:
+    ///   - section: Nom du groupe de boutons.
+    ///   - items: Liste de boutons à générer.
+    ///   - y: La position courante en hauteur.
+    func generateRadioGroup(section: String, items: [String], y: CGFloat) -> CGFloat {
         let segmentedControl = UISegmentedControl(items: items)
         
         segmentedControl.frame = CGRect(
@@ -256,8 +295,14 @@ class FormViewController: BaseController {
         
         return segmentedControl.frame.height + marginBottom
     }
-    
-    func generateSwitch(label: String, y: CGFloat, marginBottom: CGFloat) -> CGFloat {
+
+    /// Permet de générer un switch (bouton on/off) et retourne la hauteur
+    /// de l'élément généré avec sa marge.
+    ///
+    /// - Parameters:
+    ///   - label: Nom de l'élément.
+    ///   - y: La position courante en hauteur.
+    func generateSwitch(label: String, y: CGFloat) -> CGFloat {
         let switchOnOff = UISwitch(
             frame: CGRect(
                 x: 16, y: y,
@@ -275,8 +320,15 @@ class FormViewController: BaseController {
         
         return switchOnOff.frame.height + marginBottom
     }
-    
-    func generateLabel(label: String, y: CGFloat, marginBottom: CGFloat) -> CGFloat {
+
+    /// Permet de générer un label et retourne la hauteur de l'élément
+    /// généré avec sa marge.
+    ///
+    /// Méthode utile pour la génération des sections dans le formulaire.
+    ///
+    /// - Parameters:
+    ///   - label: Texte du label.
+    func generateLabel(label: String, y: CGFloat) -> CGFloat {
         let labelElem = UILabel(
             frame: CGRect(
                 x: 16, y: y,
@@ -294,9 +346,16 @@ class FormViewController: BaseController {
         return labelElem.frame.height + marginBottom
     }
 
-    func generateButtons(label: String, elems: [String], y: CGFloat, marginBottom: CGFloat) -> CGFloat {
+    /// Permet de générer un groupe de boutons et retourne la hauteur du
+    /// groupe généré (sur une seule ligne) ainsi que la marge associée.
+    ///
+    /// - Parameters:
+    ///   - label: Nom du groupement de boutons.
+    ///   - elems: Liste des boutons à générer.
+    ///   - y: La position courante en hauteur.
+    func generateButtons(label: String, elems: [String], y: CGFloat) -> CGFloat {
         var x = CGFloat(16)
-        var margin = marginBottom
+        var margin = CGFloat(marginBottom)
         let width  = (self.view.frame.width - CGFloat(16)
                                             - CGFloat(elems.count * 16))
                         / CGFloat(elems.count)
@@ -329,6 +388,7 @@ class FormViewController: BaseController {
         return margin
     }
 
+    /// Permet de nettoyer le formulaire.
     func clearForm() {
         for (field, _) in textFields {
             field.text = ""
